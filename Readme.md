@@ -1,7 +1,7 @@
 # Личный проект «Шесть городов» [![Build status][travis-image]][travis-url]
 
 * Студент: [Ярослав Колобков](https://up.htmlacademy.ru/react/4/user/449065).
-* Наставник: `Неизвестно`.
+* Наставник: [Николай Загорный](https://htmlacademy.ru/profile/id452233).
 
 ---
 
