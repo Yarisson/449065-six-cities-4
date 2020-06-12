@@ -2,7 +2,7 @@ import React from "react";
 import Main from '../main/main';
 
 const App = (props) => {
-  // const classes = props.classes;
+  // eslint-disable-next-line react/prop-types
   const {currentPlaces} = props;
 
   return <Main
