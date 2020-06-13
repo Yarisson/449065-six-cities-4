@@ -1,12 +1,25 @@
 import React from "react";
 // import ReactDOM from "react-dom";
+import propTypes from "prop-types";
 
+const Main = (Hotels) => {
+  // const Hotels = propTypes;
 
-const Main = (props) => {
-  // eslint-disable-next-line react/prop-types
-  const {places} = props;
-  // eslint-disable-next-line react/prop-types
-  const {hotels} = props;
+  Hotels.propTypes = {
+    places: propTypes.number.isRequired,
+    hotels: propTypes.arrayOf(
+        propTypes.shape({
+          img: propTypes.string.IsRequired,
+          price: propTypes.string.IsRequired,
+          width: propTypes.string.IsRequired,
+          title: propTypes.string.isRequired,
+          type: propTypes.string.isRequired
+        })
+    ).isRequired
+  };
+
+  const places = Hotels.places;
+  const hotels = Hotels.hotels;
 
   return (
     <div className="page page--gray page--main">
@@ -174,7 +187,6 @@ const Main = (props) => {
                       <p className="place-card__type">{hotel.type}</p>
                     </div>
                   </article>
-
                 )}
 
                 <article className="cities__place-card place-card">
@@ -229,8 +241,6 @@ const Main = (props) => {
                   </div>
                 </article>
 
-                {/* первый отель */}
-
                 <article className="cities__place-card place-card">
                   <div className="cities__image-wrapper place-card__image-wrapper">
                     <a href="#">
@@ -278,8 +288,6 @@ const Main = (props) => {
                   </div>
                 </article>
 
-                {/* второй отель */}
-
                 <article className="cities__place-card place-card">
                   <div className="cities__image-wrapper place-card__image-wrapper">
                     <a href="#">
@@ -326,8 +334,6 @@ const Main = (props) => {
                     <p className="place-card__type">Apartment</p>
                   </div>
                 </article>
-
-                {/* третий отель */}
 
                 <article className="cities__place-card place-card">
                   <div className="place-card__mark">
@@ -379,8 +385,6 @@ const Main = (props) => {
                   </div>
                 </article>
 
-                {/* четвертый отель */}
-
                 <article className="cities__place-card place-card">
                   <div className="cities__image-wrapper place-card__image-wrapper">
                     <a href="#">
@@ -427,8 +431,6 @@ const Main = (props) => {
                     <p className="place-card__type">Private room</p>
                   </div>
                 </article>
-
-                {/* пятый отель */}
 
               </div>
             </section>
