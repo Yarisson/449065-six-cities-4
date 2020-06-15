@@ -2,24 +2,9 @@ import React from "react";
 // import ReactDOM from "react-dom";
 import propTypes from "prop-types";
 
-const Main = (Hotels) => {
-  // const Hotels = propTypes;
-
-  Hotels.propTypes = {
-    places: propTypes.number.isRequired,
-    hotels: propTypes.arrayOf(
-        propTypes.shape({
-          img: propTypes.string.IsRequired,
-          price: propTypes.string.IsRequired,
-          width: propTypes.string.IsRequired,
-          title: propTypes.string.isRequired,
-          type: propTypes.string.isRequired
-        })
-    ).isRequired
-  };
-
-  const places = Hotels.places;
-  const hotels = Hotels.hotels;
+const Main = (places, hotels) => {
+  // const places = places;
+  // const hotels = hotels;
 
   return (
     <div className="page page--gray page--main">
@@ -442,6 +427,19 @@ const Main = (Hotels) => {
       </main>
     </div>
   );
+};
+
+Main.propTypes = {
+  places: propTypes.number.isRequired,
+  hotels: propTypes.arrayOf(
+      propTypes.shape({
+        img: propTypes.string.IsRequired,
+        price: propTypes.string.IsRequired,
+        width: propTypes.string.IsRequired,
+        title: propTypes.string.isRequired,
+        type: propTypes.string.isRequired
+      })
+  ).isRequired
 };
 
 export default Main;

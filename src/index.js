@@ -17,7 +17,7 @@ const init = () => {
 
   ReactDOM.render(
       <App
-        currentPlaces={settings}
+        currentPlaces={settings.currentPlaces} hotels={settings.hotels}
       />,
       document.querySelector(`#root`)
   );
