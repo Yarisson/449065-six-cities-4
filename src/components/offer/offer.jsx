@@ -4,7 +4,6 @@ import React from "react";
 const Offer = (props) => {
   // eslint-disable-next-line react/prop-types
   const {img, price, title, type, width} = props;
-  // const {hotel} = props;
 
   return (
     <article className="cities__place-card place-card">
