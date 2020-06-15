@@ -5,7 +5,7 @@ import App from "./components/app/app.jsx";
 const init = () => {
 
   const settings = {
-    currentPlaces: 312,
+    places: 312,
     hotels: [
       {img: `img/apartment-01.jpg`, price: `&euro;120`, width: `80%`, title: `Beautiful &amp; luxurious apartment at great location`, type: `Apartment`},
       {img: `img/room.jpg`, price: `&euro;80`, width: `80%`, title: `Wood and stone place`, type: `Private room`},
@@ -15,12 +15,9 @@ const init = () => {
     ],
   };
 
-  console.log(settings.currentPlaces);
-  console.log(settings.hotels);
-
   ReactDOM.render(
       <App
-        currentPlaces={settings.currentPlaces} hotels={settings.hotels}
+        places={settings.places} hotels={settings.hotels}
       />,
       document.querySelector(`#root`)
   );
