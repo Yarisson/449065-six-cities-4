@@ -122,7 +122,7 @@ const Main = (props) => {
               <div className="cities__places-list places__list tabs__content">
                 {hotels.map((hotel, index) =>
                   <Offer key={index}
-                    img={hotel.img} price={hotel.price} title={hotel.title} type={hotel.type}
+                    img={hotel.img} price={hotel.price} title={hotel.title} type={hotel.type} width={hotel.width}
                   />
                 )}
               </div>

@@ -3,7 +3,7 @@ import React from "react";
 
 const Offer = (props) => {
   // eslint-disable-next-line react/prop-types
-  const {img, price, title, type} = props;
+  const {img, price, title, type, width} = props;
   // const {hotel} = props;
 
   return (
@@ -46,7 +46,7 @@ const Offer = (props) => {
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{width: `80%`}} ></span>
+            <span style={{width: {width}}} ></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
