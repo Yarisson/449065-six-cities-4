@@ -15,6 +15,9 @@ const init = () => {
     ],
   };
 
+  console.log(settings.currentPlaces);
+  console.log(settings.hotels);
+
   ReactDOM.render(
       <App
         currentPlaces={settings.currentPlaces} hotels={settings.hotels}
