@@ -4,6 +4,9 @@ import renderer from 'react-test-renderer';
 
 const places = 120;
 
+const onLocationsItemClick = function () {
+};
+
 const hotels = [
   {img: `img/apartment-01.jpg`, price: `&euro;200`, width: `100%`, title: `Beautiful &amp; luxurious apartment at great location`, type: `Apartment`},
   {img: `img/room.jpg`, price: `&euro;140`, width: `20%`, title: `Wood and stone place`, type: `Private room`},
@@ -17,6 +20,7 @@ it(`Main component render`, () => {
     .create(<Main
       places={places}
       hotels={hotels}
+      onLocationsItemClick={onLocationsItemClick}
     />)
     .toJSON();
   expect(tree).toMatchSnapshot();
