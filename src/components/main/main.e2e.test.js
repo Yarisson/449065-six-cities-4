@@ -29,10 +29,12 @@ describe(`Main component`, () => {
         />
     );
 
-    const locationsItemClick = main.find(`li.locations__item`);
+    const locationsItemClickList = main.find(`li.locations__item`);
 
-    locationsItemClick.props().onClick();
+    locationsItemClickList.forEach((link) => {
+      link.simulate(`click`);
+    });
 
-    expect(onLocationsItemClick.mock.calls.length).toBe(1);
+    expect(onLocationsItemClick).toHaveBeenCalledTimes(locationsItemClickList.length);
   });
 });
