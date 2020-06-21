@@ -1,12 +1,14 @@
 import React from "react";
 // import ReactDOM from "react-dom";
+import propTypes from "prop-types";
 
 const Offer = (props) => {
-  // eslint-disable-next-line react/prop-types
-  const {img, price, title, type, width} = props;
+  const {img, price, title, type, width, onHover} = props;
 
   return (
-    <article className="cities__place-card place-card">
+    <article
+      onMouseOver = {onHover}
+      className="cities__place-card place-card">
       <div className="place-card__mark">
         <span>Premium</span>
       </div>
@@ -58,6 +60,15 @@ const Offer = (props) => {
       </div>
     </article>
   );
+};
+
+Offer.propTypes = {
+  img: propTypes.string.IsRequired,
+  price: propTypes.string.IsRequired,
+  width: propTypes.string.IsRequired,
+  title: propTypes.string.isRequired,
+  type: propTypes.string.isRequired,
+  onHover: propTypes.func.isRequired
 };
 
 export default Offer;

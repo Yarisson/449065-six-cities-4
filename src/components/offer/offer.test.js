@@ -8,6 +8,9 @@ const width = `40%`;
 const title = `Wood and stone place`;
 const type = `Private room`;
 
+const onHover = function () {
+};
+
 it(`Offer component render`, () => {
   const tree = renderer
     .create(<Offer
@@ -16,6 +19,7 @@ it(`Offer component render`, () => {
       width={width}
       title={title}
       type={type}
+      onHover={onHover}
     />)
     .toJSON();
   expect(tree).toMatchSnapshot();
