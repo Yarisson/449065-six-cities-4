@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./components/app/app.jsx";
+import offers from "./mocks/offers.js";
 
 const init = () => {
 
@@ -17,7 +18,7 @@ const init = () => {
 
   ReactDOM.render(
       <App
-        places={settings.places} hotels={settings.hotels}
+        places={settings.places} hotels={offers}
       />,
       document.querySelector(`#root`)
   );

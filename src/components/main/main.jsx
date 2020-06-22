@@ -1,10 +1,10 @@
 import React from "react";
 // import ReactDOM from "react-dom";
 import propTypes from "prop-types";
-import Offer from '../offer/offer.jsx';
+import PlacesList from '../places-list/places-list.jsx';
 
 const Main = (props) => {
-  const {places, hotels, onLocationsItemClick} = props;
+  const {places, hotels, onLocationsItemClick, onHover} = props;
 
   return (
     <div className="page page--gray page--main">
@@ -136,13 +136,7 @@ const Main = (props) => {
                 {/* <option className="places__option" value="top-rated">Top rated first</option> */}
                 {/* </select> */}
               </form>
-              <div className="cities__places-list places__list tabs__content">
-                {hotels.map((hotel, index) =>
-                  <Offer key={index}
-                    img={hotel.img} price={hotel.price} title={hotel.title} type={hotel.type} width={hotel.width}
-                  />
-                )}
-              </div>
+              <PlacesList hotels={hotels} onHover={onHover}/>
             </section>
             <div className="cities__right-section">
               <section className="cities__map map"></section>
@@ -165,7 +159,8 @@ Main.propTypes = {
         type: propTypes.string.isRequired
       })
   ).isRequired,
-  onLocationsItemClick: propTypes.func.isRequired
+  onLocationsItemClick: propTypes.func.isRequired,
+  onHover: propTypes.func.isRequired
 };
 
 export default Main;

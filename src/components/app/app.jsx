@@ -8,8 +8,12 @@ const App = (props) => {
   const onLocationsItemClick = function () {
   };
 
+  const onHover = function () {
+
+  };
+
   return <Main
-    hotels={hotels} places={places} onLocationsItemClick={onLocationsItemClick}
+    hotels={hotels} places={places} onLocationsItemClick={onLocationsItemClick} onHover={onHover}
   />;
 };
 
