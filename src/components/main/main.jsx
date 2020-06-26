@@ -2,6 +2,8 @@ import React from "react";
 // import ReactDOM from "react-dom";
 import propTypes from "prop-types";
 import PlacesList from '../places-list/places-list.jsx';
+import MapContainer from '../map/map-container.jsx';
+import Map from '../map/map.jsx';
 
 const Main = (props) => {
   const {places, hotels, onLocationsItemClick, onHover} = props;
@@ -139,7 +141,11 @@ const Main = (props) => {
               <PlacesList hotels={hotels} onHover={onHover}/>
             </section>
             <div className="cities__right-section">
-              <section className="cities__map map"></section>
+              <section className="cities__map map">
+                <MapContainer>
+                  <Map />
+                </MapContainer>
+              </section>
             </div>
           </div>
         </div>
