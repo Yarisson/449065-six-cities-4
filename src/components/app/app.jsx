@@ -25,7 +25,8 @@ App.propTypes = {
         price: propTypes.string.IsRequired,
         width: propTypes.string.IsRequired,
         title: propTypes.string.isRequired,
-        type: propTypes.string.isRequired
+        type: propTypes.string.isRequired,
+        coor: propTypes.array.isRequired
       })
   ).isRequired,
 };

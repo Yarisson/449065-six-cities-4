@@ -1,11 +1,6 @@
 import React from 'react';
-import Main from './main.jsx';
+import Map from './map.jsx';
 import renderer from 'react-test-renderer';
-
-const places = 120;
-
-const onLocationsItemClick = function () {
-};
 
 const hotels = [
   {img: `img/apartment-01.jpg`, price: `&euro;200`, width: `100%`, title: `Beautiful &amp; luxurious apartment at great location`, type: `Apartment`, coor: [52.390450945458, 4.04309666406198]},
@@ -15,12 +10,10 @@ const hotels = [
   {img: `img/room.jpg`, price: `&euro;150`, width: `40%`, title: `Wood and stone place`, type: `Private room`, coor: [52.15000000000000, 4.25000000000000]},
 ];
 
-it(`Main component render`, () => {
+it(`Map component render`, () => {
   const tree = renderer
-    .create(<Main
-      places={places}
+    .create(<Map
       hotels={hotels}
-      onLocationsItemClick={onLocationsItemClick}
     />)
     .toJSON();
   expect(tree).toMatchSnapshot();

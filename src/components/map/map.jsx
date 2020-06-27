@@ -10,39 +10,46 @@ const icon = leaflet.icon({
   iconSize: [30, 30]
 });
 
-const zoom = 12;
-const map = leaflet.map(`map`, {
-  center: city,
-  zoom: zoom,
-  zoomControl: false,
-  marker: true
-});
+// {this.props.name}
 
-class Map extends React.Component {
+class Map extends React.PureComponent {
+  // const {hotels} = props;
+  constructor(props) {
+    super(props);
+    this.hotels = React.createRef();
+  }
 
   componentDidMount() {
     // create map
+    const {hotels} = this.props;
+
+    const zoom = 12;
+    const map = leaflet.map(`map`, {
+      center: city,
+      zoom: {zoom},
+      zoomControl: false,
+      marker: true
+    });
     map.setView(city, zoom);
 
     leaflet
       .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
+        attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
       })
       .addTo(map);
 
-    const offerCords = [52.3709553943508, 4.89309666406198];
-    leaflet
-      .marker(offerCords, {icon})
-      .addTo(map);
+    hotels.forEach((item) => {
+      leaflet.marker(item.coor, {icon}).addTo(map);
+    });
   }
 
   render() {
-    return <div id="map"></div>
+    return <div style={{width: `512px`, height: `849px`}} id="map"></div>;
   }
-};
+}
 
 Map.propTypes = {
-  map: propTypes.array.isRequired
+  hotels: propTypes.array.isRequired
 };
 
 export default Map;
