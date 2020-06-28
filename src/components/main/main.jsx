@@ -161,9 +161,9 @@ Main.propTypes = {
   places: propTypes.number.isRequired,
   hotels: propTypes.arrayOf(
       propTypes.shape({
-        img: propTypes.string.IsRequired,
-        price: propTypes.string.IsRequired,
-        width: propTypes.string.IsRequired,
+        img: propTypes.string.isRequired,
+        price: propTypes.string.isRequired,
+        width: propTypes.string.isRequired,
         title: propTypes.string.isRequired,
         type: propTypes.string.isRequired,
         coor: propTypes.array.isRequired
