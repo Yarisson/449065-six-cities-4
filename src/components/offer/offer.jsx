@@ -63,9 +63,9 @@ const Offer = (props) => {
 };
 
 Offer.propTypes = {
-  img: propTypes.string.IsRequired,
-  price: propTypes.string.IsRequired,
-  width: propTypes.string.IsRequired,
+  img: propTypes.string.isRequired,
+  price: propTypes.string.isRequired,
+  width: propTypes.string.isRequired,
   title: propTypes.string.isRequired,
   type: propTypes.string.isRequired,
   onHover: propTypes.func.isRequired

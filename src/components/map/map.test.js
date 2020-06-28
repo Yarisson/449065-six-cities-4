@@ -1,9 +1,6 @@
 import React from 'react';
-import PlacesList from './places-list.jsx';
+import Map from './map.jsx';
 import renderer from 'react-test-renderer';
-
-const onHover = function () {
-};
 
 const hotels = [
   {img: `img/apartment-01.jpg`, price: `&euro;200`, width: `100%`, title: `Beautiful &amp; luxurious apartment at great location`, type: `Apartment`, coor: [52.390450945458, 4.04309666406198]},
@@ -13,11 +10,10 @@ const hotels = [
   {img: `img/room.jpg`, price: `&euro;150`, width: `40%`, title: `Wood and stone place`, type: `Private room`, coor: [52.15000000000000, 4.25000000000000]},
 ];
 
-it(`PlacesList component render`, () => {
+it(`Map component render`, () => {
   const tree = renderer
-    .create(<PlacesList
+    .create(<Map
       hotels={hotels}
-      onHover={onHover}
     />)
     .toJSON();
   expect(tree).toMatchSnapshot();

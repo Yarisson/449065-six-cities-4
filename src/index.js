@@ -16,6 +16,7 @@ const init = () => {
     ],
   };
 
+
   ReactDOM.render(
       <App
         places={settings.places} hotels={offers}

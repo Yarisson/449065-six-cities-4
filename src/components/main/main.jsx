@@ -2,6 +2,8 @@ import React from "react";
 // import ReactDOM from "react-dom";
 import propTypes from "prop-types";
 import PlacesList from '../places-list/places-list.jsx';
+// import MapContainer from '../map/map-container.jsx';
+import Map from '../map/map.jsx';
 
 const Main = (props) => {
   const {places, hotels, onLocationsItemClick, onHover} = props;
@@ -139,7 +141,14 @@ const Main = (props) => {
               <PlacesList hotels={hotels} onHover={onHover}/>
             </section>
             <div className="cities__right-section">
-              <section className="cities__map map"></section>
+
+              <section className="map">
+                <Map hotels={hotels} />
+              </section>
+
+              {/* <section className="cities__map map">
+                <Map />
+              </section> */}
             </div>
           </div>
         </div>
@@ -152,11 +161,12 @@ Main.propTypes = {
   places: propTypes.number.isRequired,
   hotels: propTypes.arrayOf(
       propTypes.shape({
-        img: propTypes.string.IsRequired,
-        price: propTypes.string.IsRequired,
-        width: propTypes.string.IsRequired,
+        img: propTypes.string.isRequired,
+        price: propTypes.string.isRequired,
+        width: propTypes.string.isRequired,
         title: propTypes.string.isRequired,
-        type: propTypes.string.isRequired
+        type: propTypes.string.isRequired,
+        coor: propTypes.array.isRequired
       })
   ).isRequired,
   onLocationsItemClick: propTypes.func.isRequired,
