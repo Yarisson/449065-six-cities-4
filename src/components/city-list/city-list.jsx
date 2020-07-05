@@ -3,20 +3,20 @@ import propTypes from "prop-types";
 // import ReactDOM from "react-dom";
 
 const CityList = (props) => {
-  const {cityList} = props;
+  const {cityList, onLocationsItemClick} = props;
 
   return (
     <ul className="locations__list tabs__list">
-      cityList.forEach((item) => {
+
+      {cityList.forEach((item) =>
         <li
           onClick={onLocationsItemClick}
           className="locations__item"
-          >
+        >
           <a className="locations__item-link tabs__item" href="#">
-            <span>item</span>
+            <span>{item}</span>
           </a>
-        </li>
-      });
+        </li>)}
     </ul>
   );
 };

@@ -5,6 +5,7 @@ import {Provider} from "react-redux";
 import App from "./components/app/app.jsx";
 import offers from "./mocks/offers.js";
 import {reducer} from "./reducer.js";
+import cityList from "./mocks/city-list.js";
 
 const init = () => {
 
@@ -20,17 +21,17 @@ const init = () => {
   };
 
   const store = createStore(
-    reducer,
-    window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : (f) => f
+      reducer,
+      window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : (f) => f
   );
 
   ReactDOM.render(
-    <Provider store={store}>
-      <App
-        places={settings.places} hotels={offers}
-      />,
-    </Provider>
-    document.querySelector(`#root`)
+      <Provider store={store}>
+        <App
+          places={settings.places} hotels={offers} cityList={cityList}
+        />
+      </Provider>,
+      document.querySelector(`#root`)
   );
 };
 

@@ -1,3 +1,11 @@
+import {extend} from "./utils";
+
+import ParisOffers from "./mocks/offers-all.js";
+import CologneOffers from "./mocks/offers-all.js";
+import BrusselsOffers from "./mocks/offers-all.js";
+import AmsterdamOffers from "./mocks/offers-all.js";
+import HamburgOffers from "./mocks/offers-all.js";
+import DusseldorfOffers from "./mocks/offers-all.js";
 
 const initialState = {
   city: `Amsterdam`,
@@ -14,18 +22,57 @@ const ActionType = {
   GET_LIST: `GET_LIST`,
 };
 
+const ActionCreator = {
+  toggleCity: (city) => {
+    return {
+      payload: city,
+    };
+  },
+
+  gitList: (city) => {
+
+    switch (city) {
+      case `Paris`:
+        currentList = ParisOffers;
+        break;
+      case `Cologne`:
+        currentList = CologneOffers;
+        break;
+      case `Brussels`:
+        currentList = BrusselsOffers;
+        break;
+      case `Amsterdam`:
+        currentList = AmsterdamOffers;
+        break;
+      case `Hamburg`:
+        currentList = HamburgOffers;
+        break;
+      case `Dusseldorf`:
+        currentList = DusseldorfOffers;
+        break;
+    }
+
+    return {
+      type: ActionType.GET_LIST,
+      payload: currentList,
+    };
+  },
+};
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case ActionType.TOGGLE_CITY: 
-      state.city = action.payload;
-      return state;
+    case ActionType.TOGGLE_CITY:
+      return extend(state, {
+        city: action.payload,
+      });
 
-    case ActionType.GET_LIST: 
-      state.offers = action.payload;
-      return state;
+    case ActionType.GET_LIST:
+      return extend(state, {
+        offers: action.payload,
+      });
   }
 
   return state;
-}
+};
 
-export {reducer, ActionType};
+export {reducer, ActionCreator, ActionType};
