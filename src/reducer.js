@@ -17,7 +17,7 @@ const initialState = {
   ],
 };
 
-const currentList = initialState.offers;
+// let currentList = initialState.offers;
 
 const ActionType = {
   TOGGLE_CITY: `TOGGLE_CITY`,
@@ -27,12 +27,13 @@ const ActionType = {
 const ActionCreator = {
   toggleCity: (city) => {
     return {
+      type: ActionType.TOGGLE_CITY,
       payload: city,
     };
   },
 
   gitList: (city) => {
-
+    let currentList;
     switch (city) {
       case `Paris`:
         currentList = ParisOffers;

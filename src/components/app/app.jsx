@@ -5,20 +5,20 @@ import propTypes from "prop-types";
 import Main from '../main/main.jsx';
 
 const App = (props) => {
-  const {places, hotels, cityList, onLocationsItemClick} = props;
+  const {places, cityList, onLocationsItemClick} = props;
 
   const onHover = function () {
 
   };
 
   return <Main
-    hotels={hotels} places={places} cityList={cityList} onLocationsItemClick={onLocationsItemClick} onHover={onHover}
+    hotels={state.offers} places={places} cityList={cityList} onLocationsItemClick={onLocationsItemClick} onHover={onHover}
   />;
 };
 
 App.propTypes = {
   places: propTypes.number.isRequired,
-  hotels: propTypes.arrayOf(
+  offers: propTypes.arrayOf(
       propTypes.shape({
         img: propTypes.string.isRequired,
         price: propTypes.string.isRequired,
