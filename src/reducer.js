@@ -1,11 +1,11 @@
 import {extend} from "./utils";
 
-import ParisOffers from "./mocks/offers-all.js";
-import CologneOffers from "./mocks/offers-all.js";
-import BrusselsOffers from "./mocks/offers-all.js";
-import AmsterdamOffers from "./mocks/offers-all.js";
-import HamburgOffers from "./mocks/offers-all.js";
-import DusseldorfOffers from "./mocks/offers-all.js";
+import {ParisOffers} from "./mocks/offers-all.js";
+import {CologneOffers} from "./mocks/offers-all.js";
+import {BrusselsOffers} from "./mocks/offers-all.js";
+import {AmsterdamOffers} from "./mocks/offers-all.js";
+import {HamburgOffers} from "./mocks/offers-all.js";
+import {DusseldorfOffers} from "./mocks/offers-all.js";
 
 const initialState = {
   city: `Amsterdam`,
@@ -14,8 +14,10 @@ const initialState = {
     {img: `img/room.jpg`, price: `&euro;80`, width: `80%`, title: `Wood and stone place`, type: `Private room`, coor: [52.369553943508, 4.85309666406198]},
     {img: `img/apartment-02.jpg`, price: `&euro;132`, width: `80%`, title: `Canal View Prinsengracht`, type: `Apartment`, coor: [52.3909553943508, 4.929309666406198]},
     {img: `img/apartment-03.jpg`, price: `&euro;180`, width: `100%`, title: `Nice, cozy, warm big bed apartment`, type: `Apartment`, coor: [52.3809553943508, 4.939309666406198]},
-  ]
+  ],
 };
+
+const currentList = initialState.offers;
 
 const ActionType = {
   TOGGLE_CITY: `TOGGLE_CITY`,

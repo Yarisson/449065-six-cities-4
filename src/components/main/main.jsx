@@ -49,7 +49,7 @@ const Main = (props) => {
         <div className="tabs">
           <section className="locations container">
             <CityList cityList={cityList} onLocationsItemClick={onLocationsItemClick}/>
-            <ul className="locations__list tabs__list">
+            {/* <ul className="locations__list tabs__list">
               <li
                 onClick={onLocationsItemClick}
                 className="locations__item"
@@ -98,7 +98,7 @@ const Main = (props) => {
                   <span>Dusseldorf</span>
                 </a>
               </li>
-            </ul>
+            </ul> */}
           </section>
         </div>
         <div className="cities">

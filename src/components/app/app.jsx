@@ -39,7 +39,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onLocationsItemClick() {
+  onLocationsItemClick(city) {
     dispatch(ActionCreator.toggleCity(city));
     dispatch(ActionCreator.gitList(city));
   },
