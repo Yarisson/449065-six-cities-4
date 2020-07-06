@@ -10,7 +10,11 @@ const CityList = (props) => {
 
       {cityList.map((item, index) =>
         <li key={index}
-          onClick={onLocationsItemClick}
+
+          onClick={(evt) => {
+            evt.preventDefault();
+            onLocationsItemClick(item);
+          }}
           className="locations__item"
         >
           <a className="locations__item-link tabs__item" href="#">

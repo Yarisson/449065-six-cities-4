@@ -48,7 +48,7 @@ const Main = (props) => {
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
           <section className="locations container">
-            <CityList cityList={cityList} onLocationsItemClick={onLocationsItemClick}/>
+            <CityList cityList={cityList} onLocationsItemClick={onLocationsItemClick} onLocationsItemClick={() => {}}/>
             {/* <ul className="locations__list tabs__list">
               <li
                 onClick={onLocationsItemClick}
