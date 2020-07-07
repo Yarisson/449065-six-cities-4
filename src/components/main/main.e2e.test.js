@@ -20,8 +20,6 @@ describe(`Main component`, () => {
       {img: `img/room.jpg`, price: `&euro;150`, width: `40%`, title: `Wood and stone place`, type: `Private room`, coor: [52.15000000000000, 4.25000000000000]},
     ];
 
-    const coors = [52.38, 4.9];
-
     const cityList = [
       {name: `Paris`, coor: [48.85, 2.34]},
       {name: `Cologne`, coor: [50.93, 6.34]},
@@ -30,6 +28,8 @@ describe(`Main component`, () => {
       {name: `Hamburg`, coor: [53.57, 10.0]},
       {name: `Dusseldorf`, coor: [51.22, 6.8]}
     ];
+
+    const coors = [52.38, 4.9];
 
     const places = 120;
 
