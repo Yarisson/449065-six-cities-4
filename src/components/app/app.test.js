@@ -1,6 +1,30 @@
 import React from 'react';
 import App from './app.jsx';
+import {Provider} from "react-redux";
 import renderer from 'react-test-renderer';
+import configureStore from "redux-mock-store";
+
+const mockStore = configureStore([]);
+
+const cityList = [
+  {name: `Paris`, coor: [48.85, 2.34]},
+  {name: `Cologne`, coor: [50.93, 6.34]},
+  {name: `Brussels`, coor: [50.85, 4.34]},
+  {name: `Amsterdam`, coor: [52.38, 4.9]},
+  {name: `Hamburg`, coor: [53.57, 10.0]},
+  {name: `Dusseldorf`, coor: [51.22, 6.8]}
+];
+
+const store = mockStore({
+  city: `Amsterdam`,
+  coors: [52.38, 4.9],
+  offers: [
+    {city: `Amsterdam`, img: `img/apartment-01.jpg`, price: `&euro;120`, width: `80%`, title: `Beautiful &amp; luxurious apartment at great location`, type: `Apartment`, coor: [52.3909553943508, 4.85309666406198]},
+    {city: `Amsterdam`, img: `img/room.jpg`, price: `&euro;80`, width: `80%`, title: `Wood and stone place`, type: `Private room`, coor: [52.369553943508, 4.85309666406198]},
+    {city: `Amsterdam`, img: `img/apartment-02.jpg`, price: `&euro;132`, width: `80%`, title: `Canal View Prinsengracht`, type: `Apartment`, coor: [52.3909553943508, 4.929309666406198]},
+    {city: `Amsterdam`, img: `img/apartment-03.jpg`, price: `&euro;180`, width: `100%`, title: `Nice, cozy, warm big bed apartment`, type: `Apartment`, coor: [52.3809553943508, 4.939309666406198]},
+  ],
+});
 
 const places = 120;
 
@@ -14,10 +38,15 @@ const hotels = [
 
 it(`App component render`, () => {
   const tree = renderer
-    .create(<App
-      places={places}
-      hotels={hotels}
-    />)
+    .create(
+        <Provider store={store}>
+          <App
+            places={places}
+            hotels={hotels}
+            cityList={cityList}
+          />
+        </Provider>
+    )
     .toJSON();
   expect(tree).toMatchSnapshot();
 });

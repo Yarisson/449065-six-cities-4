@@ -10,10 +10,13 @@ const hotels = [
   {img: `img/room.jpg`, price: `&euro;150`, width: `40%`, title: `Wood and stone place`, type: `Private room`, coor: [52.15000000000000, 4.25000000000000]},
 ];
 
+const coors = [52.38, 4.9];
+
 it(`Map component render`, () => {
   const tree = renderer
     .create(<Map
       hotels={hotels}
+      coors={coors}
     />)
     .toJSON();
   expect(tree).toMatchSnapshot();

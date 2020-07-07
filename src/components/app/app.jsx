@@ -1,34 +1,57 @@
 import React from "react";
+import {connect} from "react-redux";
+import {ActionCreator} from "../../reducer.js";
 import propTypes from "prop-types";
 import Main from '../main/main.jsx';
 
 const App = (props) => {
-  const {places, hotels} = props;
-
-  const onLocationsItemClick = function () {
-  };
+  const {places, cityList, onLocationsItemClick} = props;
 
   const onHover = function () {
 
   };
 
   return <Main
-    hotels={hotels} places={places} onLocationsItemClick={onLocationsItemClick} onHover={onHover}
+    hotels={props.offers} places={places} city={props.city} coors={props.coors} cityList={cityList} onLocationsItemClick={onLocationsItemClick} onHover={onHover}
   />;
 };
 
 App.propTypes = {
   places: propTypes.number.isRequired,
-  hotels: propTypes.arrayOf(
+  offers: propTypes.arrayOf(
       propTypes.shape({
         img: propTypes.string.isRequired,
         price: propTypes.string.isRequired,
         width: propTypes.string.isRequired,
         title: propTypes.string.isRequired,
         type: propTypes.string.isRequired,
+        coor: propTypes.array.isRequired,
+      })
+  ).isRequired,
+  city: propTypes.string,
+  cityList: propTypes.arrayOf(
+      propTypes.shape({
+        name: propTypes.string.isRequired,
         coor: propTypes.array.isRequired
       })
   ).isRequired,
+  coors: propTypes.array.isRequired,
+  onLocationsItemClick: propTypes.func.isRequired
 };
 
-export default App;
+const mapStateToProps = (state) => ({
+  city: state.city,
+  coors: state.coors,
+  offers: state.offers
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onLocationsItemClick(city) {
+    dispatch(ActionCreator.toggleCity(city));
+    dispatch(ActionCreator.toggleCoor(city));
+    dispatch(ActionCreator.getList(city));
+  },
+});
+
+export {App};
+export default connect(mapStateToProps, mapDispatchToProps)(App);

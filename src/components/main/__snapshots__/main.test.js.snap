@@ -117,7 +117,8 @@ exports[`Main component render 1`] = `
             onClick={[Function]}
           >
             <a
-              className="locations__item-link tabs__item tabs__item--active"
+              className="locations__item-link tabs__item"
+              href="#"
             >
               <span>
                 Amsterdam

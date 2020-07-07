@@ -3,7 +3,8 @@ import React from "react";
 import propTypes from "prop-types";
 import leaflet from "leaflet";
 
-const city = [52.38333, 4.9];
+// let city = props.coors;
+let city;
 
 const icon = leaflet.icon({
   iconUrl: `img/pin.svg`,
@@ -14,36 +15,61 @@ class Map extends React.PureComponent {
   constructor(props) {
     super(props);
     this.hotels = React.createRef();
-    // this._initMap() = this.initMap.bind(this);
+    this.coors = React.createRef();
   }
 
-  _initMap() {
+  _initMap(point) {
     // create map
-    const {hotels} = this.props;
+    // let {hotels} = this.props;
+    // let {coors} = this.props;
+    // city = coors;
+
+    // console.log(coors);
+    // console.log(city);
 
     const zoom = 12;
-    const map = leaflet.map(`map`, {
-      center: city,
-      zoom: {zoom},
+    this._map = leaflet.map(`map`, {
+      center: point,
+      zoom,
       zoomControl: false,
       marker: true
     });
-    map.setView(city, zoom);
+  }
+
+  _drawMap(currentArray, currentZoom) {
+    this._map.setView(city, currentZoom);
 
     leaflet
-        .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
-          attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
-        })
-        .addTo(map);
+    .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
+      attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
+    })
+    .addTo(this._map);
 
-    hotels.forEach((item) => {
-      leaflet.marker(item.coor, {icon}).addTo(map);
+    currentArray.forEach((item) => {
+      leaflet.marker(item.coor, {icon}).addTo(this._map);
     });
   }
 
   componentDidMount() {
+    let {hotels} = this.props;
+    let {coors} = this.props;
+    city = coors;
+
     try {
-      return this._initMap();
+      this._initMap(city);
+      this._drawMap(hotels, this.zoom);
+      return null;
+    } catch (error) {
+      return null;
+    }
+  }
+
+  componentDidUpdate() {
+    let {hotels} = this.props;
+    let {coors} = this.props;
+    city = coors;
+    try {
+      return this._drawMap(hotels, this.zoom);
     } catch (error) {
       return null;
     }
@@ -55,7 +81,8 @@ class Map extends React.PureComponent {
 }
 
 Map.propTypes = {
-  hotels: propTypes.array.isRequired
+  hotels: propTypes.array.isRequired,
+  coors: propTypes.array.isRequired
 };
 
 export default Map;
