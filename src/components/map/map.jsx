@@ -18,38 +18,58 @@ class Map extends React.PureComponent {
     this.coors = React.createRef();
   }
 
-  _initMap() {
+  _initMap(point) {
     // create map
-    let {hotels} = this.props;
-    let {coors} = this.props;
-    city = coors;
+    // let {hotels} = this.props;
+    // let {coors} = this.props;
+    // city = coors;
 
-    console.log(coors);
-    console.log(city);
+    // console.log(coors);
+    // console.log(city);
 
     const zoom = 12;
-    const map = leaflet.map(`map`, {
-      center: city,
-      zoom: {zoom},
+    this._map = leaflet.map(`map`, {
+      center: point,
+      zoom,
       zoomControl: false,
       marker: true
     });
-    map.setView(city, zoom);
+  }
+
+  _drawMap(currentArray, currentZoom) {
+    this._map.setView(city, currentZoom);
 
     leaflet
-        .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
-          attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
-        })
-        .addTo(map);
+    .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
+      attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
+    })
+    .addTo(this._map);
 
-    hotels.forEach((item) => {
-      leaflet.marker(item.coor, {icon}).addTo(map);
+    currentArray.forEach((item) => {
+      leaflet.marker(item.coor, {icon}).addTo(this._map);
     });
   }
 
   componentDidMount() {
+    let {hotels} = this.props;
+    let {coors} = this.props;
+    city = coors;
+
     try {
-      return this._initMap();
+      this._initMap(city);
+      this._drawMap(hotels, this.zoom);
+      return null;
+    } catch (error) {
+      return null;
+    }
+  }
+
+  componentDidUpdate() {
+    let {hotels} = this.props;
+    let {coors} = this.props;
+    city = coors;
+    try {
+      return this._drawMap(hotels, this.zoom);
     } catch (error) {
       return null;
     }
