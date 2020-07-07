@@ -1,5 +1,6 @@
 import React from 'react';
 import App from './app.jsx';
+import {Provider} from "react-redux";
 import renderer from 'react-test-renderer';
 import configureStore from "redux-mock-store";
 
@@ -29,12 +30,12 @@ const hotels = [
 it(`App component render`, () => {
   const tree = renderer
     .create(
-    <Provider store={store}>
-      <App
-        places={places}
-        hotels={hotels}
-      />
-    </Provider>
+        <Provider store={store}>
+          <App
+            places={places}
+            hotels={hotels}
+          />
+        </Provider>
     )
     .toJSON();
   expect(tree).toMatchSnapshot();
