@@ -3,7 +3,8 @@ import React from "react";
 import propTypes from "prop-types";
 import leaflet from "leaflet";
 
-const city = [52.38333, 4.9];
+// let city = props.coors;
+let city;
 
 const icon = leaflet.icon({
   iconUrl: `img/pin.svg`,
@@ -14,12 +15,17 @@ class Map extends React.PureComponent {
   constructor(props) {
     super(props);
     this.hotels = React.createRef();
-    // this._initMap() = this.initMap.bind(this);
+    this.coors = React.createRef();
   }
 
   _initMap() {
     // create map
-    const {hotels} = this.props;
+    let {hotels} = this.props;
+    let {coors} = this.props;
+    city = coors;
+
+    console.log(coors);
+    console.log(city);
 
     const zoom = 12;
     const map = leaflet.map(`map`, {
@@ -55,7 +61,8 @@ class Map extends React.PureComponent {
 }
 
 Map.propTypes = {
-  hotels: propTypes.array.isRequired
+  hotels: propTypes.array.isRequired,
+  coors: propTypes.array.isRequired
 };
 
 export default Map;

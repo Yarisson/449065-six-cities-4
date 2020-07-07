@@ -13,30 +13,26 @@ const CityList = (props) => {
 
           onClick={(evt) => {
             evt.preventDefault();
-            onLocationsItemClick(item);
+            onLocationsItemClick(item.name);
           }}
           className="locations__item"
         >
           <a className="locations__item-link tabs__item" href="#">
-            <span>{item}</span>
+            <span>{item.name}</span>
           </a>
         </li>
       )}
-      {/* {cityList.forEach((item) =>
-        <li
-          onClick={onLocationsItemClick}
-          className="locations__item"
-        >
-          <a className="locations__item-link tabs__item" href="#">
-            <span>{item}</span>
-          </a>
-        </li>)} */}
     </ul>
   );
 };
 
 CityList.propTypes = {
-  cityList: propTypes.array.isRequired,
+  cityList: propTypes.arrayOf(
+      propTypes.shape({
+        name: propTypes.string.isRequired,
+        coor: propTypes.array.isRequired
+      })
+  ).isRequired,
   onLocationsItemClick: propTypes.func.isRequired
 };
 

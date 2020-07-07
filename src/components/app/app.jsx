@@ -12,7 +12,7 @@ const App = (props) => {
   };
 
   return <Main
-    hotels={props.offers} places={places} city={props.city} cityList={cityList} onLocationsItemClick={onLocationsItemClick} onHover={onHover}
+    hotels={props.offers} places={places} city={props.city} coors={props.coors} cityList={cityList} onLocationsItemClick={onLocationsItemClick} onHover={onHover}
   />;
 };
 
@@ -25,23 +25,31 @@ App.propTypes = {
         width: propTypes.string.isRequired,
         title: propTypes.string.isRequired,
         type: propTypes.string.isRequired,
-        coor: propTypes.array.isRequired
+        coor: propTypes.array.isRequired,
       })
   ).isRequired,
   city: propTypes.string,
-  cityList: propTypes.array,
+  cityList: propTypes.arrayOf(
+      propTypes.shape({
+        name: propTypes.string.isRequired,
+        coor: propTypes.array.isRequired
+      })
+  ).isRequired,
+  coors: propTypes.array.isRequired,
   onLocationsItemClick: propTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({
   city: state.city,
+  coors: state.coors,
   offers: state.offers
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onLocationsItemClick(city) {
     dispatch(ActionCreator.toggleCity(city));
-    dispatch(ActionCreator.gitList(city));
+    dispatch(ActionCreator.toggleCoor(city));
+    dispatch(ActionCreator.getList(city));
   },
 });
 

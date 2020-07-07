@@ -7,7 +7,7 @@ import Map from '../map/map.jsx';
 import CityList from '../city-list/city-list.jsx';
 
 const Main = (props) => {
-  const {places, hotels, cityList, onLocationsItemClick, onHover} = props;
+  const {places, hotels, coors, cityList, onLocationsItemClick, onHover} = props;
 
   return (
     <div className="page page--gray page--main">
@@ -145,12 +145,9 @@ const Main = (props) => {
             <div className="cities__right-section">
 
               <section className="map">
-                <Map hotels={hotels} />
+                <Map hotels={hotels} coors={coors} cityList={cityList}/>
               </section>
 
-              {/* <section className="cities__map map">
-                <Map />
-              </section> */}
             </div>
           </div>
         </div>
@@ -168,10 +165,16 @@ Main.propTypes = {
         width: propTypes.string.isRequired,
         title: propTypes.string.isRequired,
         type: propTypes.string.isRequired,
+        coor: propTypes.array.isRequired,
+      })
+  ).isRequired,
+  cityList: propTypes.arrayOf(
+      propTypes.shape({
+        name: propTypes.string.isRequired,
         coor: propTypes.array.isRequired
       })
   ).isRequired,
-  cityList: propTypes.array,
+  coors: propTypes.array.isRequired,
   onLocationsItemClick: propTypes.func.isRequired,
   onHover: propTypes.func.isRequired
 };
