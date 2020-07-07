@@ -12,7 +12,7 @@ const App = (props) => {
   };
 
   return <Main
-    hotels={state.offers} places={places} cityList={cityList} onLocationsItemClick={onLocationsItemClick} onHover={onHover}
+    hotels={props.offers} places={places} city={props.city} cityList={cityList} onLocationsItemClick={onLocationsItemClick} onHover={onHover}
   />;
 };
 

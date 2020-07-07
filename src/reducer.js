@@ -17,8 +17,6 @@ const initialState = {
   ],
 };
 
-// let currentList = initialState.offers;
-
 const ActionType = {
   TOGGLE_CITY: `TOGGLE_CITY`,
   GET_LIST: `GET_LIST`,
