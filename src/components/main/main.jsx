@@ -5,6 +5,9 @@ import PlacesList from '../places-list/places-list.jsx';
 // import MapContainer from '../map/map-container.jsx';
 import Map from '../map/map.jsx';
 import CityList from '../city-list/city-list.jsx';
+import withActiveItem from  "../../hocs/with-active-item.js";
+
+const CityListWrapped = withActiveItem(CityList);
 
 const Main = (props) => {
   const {places, hotels, coors, cityList, onLocationsItemClick, onHover} = props;
@@ -48,7 +51,9 @@ const Main = (props) => {
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
           <section className="locations container">
-            <CityList cityList={cityList} onLocationsItemClick={onLocationsItemClick}/>
+
+            <CityListWrapped cityList={cityList} onLocationsItemClick={onLocationsItemClick}/>
+            {/* <CityList cityList={cityList} onLocationsItemClick={onLocationsItemClick}/> */}
             {/* <ul className="locations__list tabs__list">
               <li
                 onClick={onLocationsItemClick}

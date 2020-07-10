@@ -3,12 +3,12 @@ import propTypes from "prop-types";
 // import ReactDOM from "react-dom";
 
 const CityList = (props) => {
-  const {cityList, onLocationsItemClick} = props;
+  const {cityList, isActiveList, onLocationsItemClick} = props;
 
   return (
     <ul className="locations__list tabs__list">
 
-      {cityList.map((item, index) =>
+      {cityList.map((item, index, isActiveList) =>
         <li key={index}
 
           onClick={(evt) => {
@@ -17,7 +17,7 @@ const CityList = (props) => {
           }}
           className="locations__item"
         >
-          <a className="locations__item-link tabs__item" href="#">
+          <a className={`locations__item-link tabs__item tabs__item--${isActiveList[index] ? `active` : ``}`} href="#">
             <span>{item.name}</span>
           </a>
         </li>
