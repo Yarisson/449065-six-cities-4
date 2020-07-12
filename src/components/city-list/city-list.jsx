@@ -8,7 +8,7 @@ const CityList = (props) => {
   return (
     <ul className="locations__list tabs__list">
 
-      {cityList.map((item, index, isActiveList) =>
+      {cityList.map((item, index) =>
         <li key={index}
 
           onClick={(evt) => {
@@ -17,7 +17,7 @@ const CityList = (props) => {
           }}
           className="locations__item"
         >
-          <a className={`locations__item-link tabs__item tabs__item--${isActiveList[index] ? `active` : ``}`} href="#">
+          <a className={`locations__item-link tabs__item tabs__item--${item.active ? `active` : ``}`} href="#">
             <span>{item.name}</span>
           </a>
         </li>

@@ -7,7 +7,7 @@ const Offer = (props) => {
 
   return (
     <article
-      onMouseHover = {onHover}
+      onMouseOver = {onHover}
       className="cities__place-card place-card">
       <div className="place-card__mark">
         <span>Premium</span>

@@ -5,12 +5,12 @@ import PlacesList from '../places-list/places-list.jsx';
 // import MapContainer from '../map/map-container.jsx';
 import Map from '../map/map.jsx';
 import CityList from '../city-list/city-list.jsx';
-import withActiveItem from  "../../hocs/with-active-item.js";
+import withActiveItem from "../../hocs/with-active-item.js";
 
 const CityListWrapped = withActiveItem(CityList);
 
 const Main = (props) => {
-  const {places, hotels, coors, cityList, onLocationsItemClick, onHover} = props;
+  const {places, hotels, coors, city, cityList, onLocationsItemClick, onHover} = props;
 
   return (
     <div className="page page--gray page--main">
@@ -52,7 +52,7 @@ const Main = (props) => {
         <div className="tabs">
           <section className="locations container">
 
-            <CityListWrapped cityList={cityList} onLocationsItemClick={onLocationsItemClick}/>
+            <CityListWrapped cityList={cityList} city={city} onLocationsItemClick={onLocationsItemClick}/>
             {/* <CityList cityList={cityList} onLocationsItemClick={onLocationsItemClick}/> */}
             {/* <ul className="locations__list tabs__list">
               <li
@@ -179,6 +179,7 @@ Main.propTypes = {
         coor: propTypes.array.isRequired
       })
   ).isRequired,
+  city: propTypes.string,
   coors: propTypes.array.isRequired,
   onLocationsItemClick: propTypes.func.isRequired,
   onHover: propTypes.func.isRequired
