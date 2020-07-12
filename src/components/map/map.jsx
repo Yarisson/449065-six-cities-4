@@ -60,7 +60,7 @@ class Map extends React.PureComponent {
     try {
       this._initMap(city);
       this._drawMap(hotels, this.zoom);
-      this._drawActiveMarker(this.props.activeItem)
+      this._drawActiveMarker(this.props.activeItem);
       return null;
     } catch (error) {
       return null;
@@ -85,7 +85,8 @@ class Map extends React.PureComponent {
 
 Map.propTypes = {
   hotels: propTypes.array.isRequired,
-  coors: propTypes.array.isRequired
+  coors: propTypes.array.isRequired,
+  activeItem: propTypes.array
 };
 
 export default Map;

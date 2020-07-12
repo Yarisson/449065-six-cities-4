@@ -3,7 +3,7 @@ import propTypes from "prop-types";
 // import ReactDOM from "react-dom";
 
 const CityList = (props) => {
-  const {cityList, city, activeItem, handleSetActiveItem, onLocationsItemClick} = props;
+  const {cityList, activeItem, handleSetActiveItem, onLocationsItemClick} = props;
   return (
     <ul className="locations__list tabs__list">
 

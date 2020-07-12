@@ -10,7 +10,7 @@ const Offer = (props) => {
       // onMouseOver = {onHover}
       onMouseOver={(evt) => {
         evt.preventDefault();
-        onHover()
+        onHover();
         handleSetActiveItem(coor);
       }}
       className="cities__place-card place-card">
@@ -74,7 +74,8 @@ Offer.propTypes = {
   title: propTypes.string.isRequired,
   type: propTypes.string.isRequired,
   onHover: propTypes.func.isRequired,
-  coor: propTypes.array
+  coor: propTypes.array,
+  handleSetActiveItem: propTypes.func
 };
 
 export default Offer;

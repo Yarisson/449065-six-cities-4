@@ -51,7 +51,7 @@ const Main = (props) => {
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
           <section className="locations container">
-            <CityListWrapped cityList={cityList} city={city} onLocationsItemClick={onLocationsItemClick}/>
+            <CityListWrapped cityList={cityList} onLocationsItemClick={onLocationsItemClick}/>
           </section>
         </div>
         <div className="cities">
@@ -59,7 +59,7 @@ const Main = (props) => {
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
               <b className="places__found">
-                {places} places to stay in Amsterdam
+                {places} places to stay in {city}
               </b>
               <form className="places__sorting" action="#" method="get">
                 <span className="places__sorting-caption">Sort by</span>
@@ -130,7 +130,9 @@ Main.propTypes = {
   city: propTypes.string,
   coors: propTypes.array.isRequired,
   onLocationsItemClick: propTypes.func.isRequired,
-  onHover: propTypes.func.isRequired
+  onHover: propTypes.func.isRequired,
+  activeItem: propTypes.array,
+  handleSetActiveItem: propTypes.func
 };
 
 export default Main;

@@ -27,7 +27,8 @@ PlacesList.propTypes = {
         type: propTypes.string.isRequired
       })
   ).isRequired,
-  onHover: propTypes.func.isRequired
+  onHover: propTypes.func.isRequired,
+  handleSetActiveItem: propTypes.func
 };
 
 export default PlacesList;
