@@ -3,8 +3,8 @@ import propTypes from "prop-types";
 // import ReactDOM from "react-dom";
 
 const CityList = (props) => {
-  const {cityList, isActiveList, onLocationsItemClick} = props;
-
+  const {cityList, city, isActiveList, onLocationsItemClick} = props;
+  console.log(props);
   return (
     <ul className="locations__list tabs__list">
 
@@ -17,7 +17,7 @@ const CityList = (props) => {
           }}
           className="locations__item"
         >
-          <a className={`locations__item-link tabs__item tabs__item--${item.active ? `active` : ``}`} href="#">
+          <a className={`locations__item-link tabs__item tabs__item--${item.name === city ? `active` : ``}`} href="#">
             <span>{item.name}</span>
           </a>
         </li>

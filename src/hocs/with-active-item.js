@@ -30,9 +30,6 @@ const withActiveItem = (Component) => {
     _activeCity() {
       let activeCity = this.state.city;
       let activeCityList = this.state.cityList;
-      console.log(activeCity);
-      console.log(activeCityList);
-      console.log(isActiveList);
       for (let item of activeCityList) {
         if (item.name === activeCity) {
           isActiveList.push(true);
@@ -46,14 +43,10 @@ const withActiveItem = (Component) => {
 
     componentDidMount() {
       this._activeCity();
+    }
 
-      // try {
-      //   this._initMap(city);
-      //   this._drawMap(hotels, this.zoom);
-      //   return null;
-      // } catch (error) {
-      //   return null;
-      // }
+    componentDidUpdate() {
+      this._activeCity();
     }
 
     render() {
