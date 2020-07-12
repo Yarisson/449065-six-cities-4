@@ -4,6 +4,10 @@ import {ActionCreator} from "../../reducer.js";
 import propTypes from "prop-types";
 import Main from '../main/main.jsx';
 
+import withActiveItem from "../../hocs/with-active-item.js";
+
+const MainWrapped = withActiveItem(Main);
+
 const App = (props) => {
   const {places, cityList, onLocationsItemClick} = props;
 
@@ -11,9 +15,13 @@ const App = (props) => {
 
   };
 
-  return <Main
+  return <MainWrapped
     hotels={props.offers} places={places} city={props.city} coors={props.coors} cityList={cityList} onLocationsItemClick={onLocationsItemClick} onHover={onHover}
   />;
+
+  // <Main
+  //   hotels={props.offers} places={places} city={props.city} coors={props.coors} cityList={cityList} onLocationsItemClick={onLocationsItemClick} onHover={onHover}
+  // />;
 };
 
 App.propTypes = {

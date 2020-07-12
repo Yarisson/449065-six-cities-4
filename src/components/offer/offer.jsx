@@ -3,11 +3,16 @@ import React from "react";
 import propTypes from "prop-types";
 
 const Offer = (props) => {
-  const {img, price, title, type, width, onHover} = props;
+  const {img, price, title, type, coor, width, onHover, handleSetActiveItem} = props;
 
   return (
     <article
-      onMouseOver = {onHover}
+      // onMouseOver = {onHover}
+      onMouseOver={(evt) => {
+        evt.preventDefault();
+        onHover()
+        handleSetActiveItem(coor);
+      }}
       className="cities__place-card place-card">
       <div className="place-card__mark">
         <span>Premium</span>
@@ -68,7 +73,8 @@ Offer.propTypes = {
   width: propTypes.string.isRequired,
   title: propTypes.string.isRequired,
   type: propTypes.string.isRequired,
-  onHover: propTypes.func.isRequired
+  onHover: propTypes.func.isRequired,
+  coor: propTypes.array
 };
 
 export default Offer;

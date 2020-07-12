@@ -3,8 +3,7 @@ import propTypes from "prop-types";
 // import ReactDOM from "react-dom";
 
 const CityList = (props) => {
-  const {cityList, city, isActiveList, onLocationsItemClick} = props;
-  console.log(props);
+  const {cityList, city, activeItem, handleSetActiveItem, onLocationsItemClick} = props;
   return (
     <ul className="locations__list tabs__list">
 
@@ -14,10 +13,11 @@ const CityList = (props) => {
           onClick={(evt) => {
             evt.preventDefault();
             onLocationsItemClick(item.name);
+            handleSetActiveItem(item.name);
           }}
           className="locations__item"
         >
-          <a className={`locations__item-link tabs__item tabs__item--${item.name === city ? `active` : ``}`} href="#">
+          <a className={`locations__item-link tabs__item tabs__item--${item.name === activeItem ? `active` : ``}`} href="#">
             <span>{item.name}</span>
           </a>
         </li>
@@ -33,7 +33,9 @@ CityList.propTypes = {
         coor: propTypes.array.isRequired
       })
   ).isRequired,
-  onLocationsItemClick: propTypes.func.isRequired
+  onLocationsItemClick: propTypes.func.isRequired,
+  handleSetActiveItem: propTypes.func,
+  activeItem: propTypes.string
 };
 
 export default CityList;

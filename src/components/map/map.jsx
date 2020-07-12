@@ -11,22 +11,20 @@ const icon = leaflet.icon({
   iconSize: [30, 30]
 });
 
+const iconActive = leaflet.icon({
+  iconUrl: `img/pin-active.svg`,
+  iconSize: [30, 30]
+});
+
 class Map extends React.PureComponent {
   constructor(props) {
     super(props);
     this.hotels = React.createRef();
     this.coors = React.createRef();
+    this.activeItem = React.createRef();
   }
 
   _initMap(point) {
-    // create map
-    // let {hotels} = this.props;
-    // let {coors} = this.props;
-    // city = coors;
-
-    // console.log(coors);
-    // console.log(city);
-
     const zoom = 12;
     this._map = leaflet.map(`map`, {
       center: point,
@@ -50,6 +48,10 @@ class Map extends React.PureComponent {
     });
   }
 
+  _drawActiveMarker(coor) {
+    leaflet.marker(coor, {iconActive}).addTo(this._map);
+  }
+
   componentDidMount() {
     let {hotels} = this.props;
     let {coors} = this.props;
@@ -58,6 +60,7 @@ class Map extends React.PureComponent {
     try {
       this._initMap(city);
       this._drawMap(hotels, this.zoom);
+      this._drawActiveMarker(this.props.activeItem)
       return null;
     } catch (error) {
       return null;

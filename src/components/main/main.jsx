@@ -10,7 +10,7 @@ import withActiveItem from "../../hocs/with-active-item.js";
 const CityListWrapped = withActiveItem(CityList);
 
 const Main = (props) => {
-  const {places, hotels, coors, city, cityList, onLocationsItemClick, onHover} = props;
+  const {places, hotels, coors, city, cityList, onLocationsItemClick, onHover, activeItem, handleSetActiveItem} = props;
 
   return (
     <div className="page page--gray page--main">
@@ -51,59 +51,7 @@ const Main = (props) => {
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
           <section className="locations container">
-
             <CityListWrapped cityList={cityList} city={city} onLocationsItemClick={onLocationsItemClick}/>
-            {/* <CityList cityList={cityList} onLocationsItemClick={onLocationsItemClick}/> */}
-            {/* <ul className="locations__list tabs__list">
-              <li
-                onClick={onLocationsItemClick}
-                className="locations__item"
-              >
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Paris</span>
-                </a>
-              </li>
-              <li
-                onClick={onLocationsItemClick}
-                className="locations__item"
-              >
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Cologne</span>
-                </a>
-              </li>
-              <li
-                onClick={onLocationsItemClick}
-                className="locations__item"
-              >
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Brussels</span>
-                </a>
-              </li>
-              <li
-                onClick={onLocationsItemClick}
-                className="locations__item"
-              >
-                <a className="locations__item-link tabs__item tabs__item--active">
-                  <span>Amsterdam</span>
-                </a>
-              </li>
-              <li
-                onClick={onLocationsItemClick}
-                className="locations__item"
-              >
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Hamburg</span>
-                </a>
-              </li>
-              <li
-                onClick={onLocationsItemClick}
-                className="locations__item"
-              >
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Dusseldorf</span>
-                </a>
-              </li>
-            </ul> */}
           </section>
         </div>
         <div className="cities">
@@ -145,12 +93,12 @@ const Main = (props) => {
                 {/* <option className="places__option" value="top-rated">Top rated first</option> */}
                 {/* </select> */}
               </form>
-              <PlacesList hotels={hotels} onHover={onHover}/>
+              <PlacesList hotels={hotels} onHover={onHover} handleSetActiveItem={handleSetActiveItem}/>
             </section>
             <div className="cities__right-section">
 
               <section className="map">
-                <Map hotels={hotels} coors={coors} cityList={cityList}/>
+                <Map hotels={hotels} coors={coors} cityList={cityList} activeItem={activeItem}/>
               </section>
 
             </div>

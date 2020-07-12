@@ -4,13 +4,13 @@ import propTypes from "prop-types";
 import Offer from '../offer/offer.jsx';
 
 const PlacesList = (props) => {
-  const {hotels, onHover} = props;
+  const {hotels, onHover, handleSetActiveItem} = props;
 
   return (
     <div className="cities__places-list places__list tabs__content">
       {hotels.map((hotel, index) =>
         <Offer key={index}
-          img={hotel.img} price={hotel.price} title={hotel.title} type={hotel.type} width={hotel.width} onHover={onHover}
+          img={hotel.img} price={hotel.price} title={hotel.title} type={hotel.type} width={hotel.width} coor={hotel.coor} onHover={onHover} handleSetActiveItem={handleSetActiveItem}
         />
       )}
     </div>
