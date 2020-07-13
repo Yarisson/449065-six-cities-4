@@ -11,6 +11,7 @@ describe(`Main component`, () => {
   it(`Should locations item be pressed`, () => {
     const onLocationsItemClick = jest.fn();
     const onHover = jest.fn();
+    const handleSetActiveItem = jest.fn();
 
     const hotels = [
       {img: `img/apartment-01.jpg`, price: `&euro;200`, width: `100%`, title: `Beautiful &amp; luxurious apartment at great location`, type: `Apartment`, coor: [52.390450945458, 4.04309666406198]},
@@ -31,6 +32,8 @@ describe(`Main component`, () => {
 
     const coors = [52.38, 4.9];
 
+    const activeItem = [52.390450945458, 4.04309666406198];
+
     const places = 120;
 
     const main = shallow(
@@ -38,9 +41,11 @@ describe(`Main component`, () => {
           hotels={hotels}
           places={places}
           coors={coors}
+          activeItem={activeItem}
           cityList={cityList}
           onLocationsItemClick={onLocationsItemClick}
           onHover={onHover}
+          handleSetActiveItem={handleSetActiveItem}
         />
     );
 

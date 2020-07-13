@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`variants for HOC WithActiveItem For CityList 1`] = `<div />`;
+
+exports[`variants for HOC WithActiveItem With one one count 1`] = `<div />`;

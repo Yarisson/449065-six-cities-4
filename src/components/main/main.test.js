@@ -10,6 +10,10 @@ const onLocationsItemClick = function () {
 const onHover = function () {
 };
 
+const handleSetActiveItem = function () {
+
+};
+
 const cityList = [
   {name: `Paris`, coor: [48.85, 2.34]},
   {name: `Cologne`, coor: [50.93, 6.34]},
@@ -20,6 +24,8 @@ const cityList = [
 ];
 
 const coors = [52.38, 4.9];
+
+const activeItem = [52.390450945458, 4.04309666406198];
 
 const hotels = [
   {img: `img/apartment-01.jpg`, price: `&euro;200`, width: `100%`, title: `Beautiful &amp; luxurious apartment at great location`, type: `Apartment`, coor: [52.390450945458, 4.04309666406198]},
@@ -37,6 +43,8 @@ it(`Main component render`, () => {
       onLocationsItemClick={onLocationsItemClick}
       coors={coors}
       cityList={cityList}
+      activeItem={activeItem}
+      handleSetActiveItem={handleSetActiveItem}
       onHover={onHover}
     />)
     .toJSON();

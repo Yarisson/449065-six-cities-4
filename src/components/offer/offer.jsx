@@ -7,7 +7,6 @@ const Offer = (props) => {
 
   return (
     <article
-      // onMouseOver = {onHover}
       onMouseOver={(evt) => {
         evt.preventDefault();
         onHover();

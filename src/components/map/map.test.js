@@ -12,11 +12,14 @@ const hotels = [
 
 const coors = [52.38, 4.9];
 
+const activeItem = [51.63072056168636, 4.05303667407681];
+
 it(`Map component render`, () => {
   const tree = renderer
     .create(<Map
       hotels={hotels}
       coors={coors}
+      activeItem={activeItem}
     />)
     .toJSON();
   expect(tree).toMatchSnapshot();
