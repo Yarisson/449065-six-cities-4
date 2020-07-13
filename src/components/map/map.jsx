@@ -44,12 +44,22 @@ class Map extends React.PureComponent {
     .addTo(this._map);
 
     currentArray.forEach((item) => {
-      leaflet.marker(item.coor, {icon}).addTo(this._map);
+      if (this.props.activeItem === null) {
+        leaflet.marker(item.coor, {icon}).addTo(this._map);
+      } else {
+        if (item.coor === this.props.activeItem) {
+          leaflet.marker(item.coor, {iconActive}).addTo(this._map);
+        } else {
+          leaflet.marker(item.coor, {icon}).addTo(this._map);
+        }
+      }
     });
   }
 
-  _drawActiveMarker(coor) {
-    leaflet.marker(coor, {iconActive}).addTo(this._map);
+  _deleteMarker() {
+    this._map.eachLayer((layer) => {
+      layer.remove();
+    });
   }
 
   componentDidMount() {
@@ -60,7 +70,6 @@ class Map extends React.PureComponent {
     try {
       this._initMap(city);
       this._drawMap(hotels, this.zoom);
-      this._drawActiveMarker(this.props.activeItem);
       return null;
     } catch (error) {
       return null;
@@ -68,6 +77,7 @@ class Map extends React.PureComponent {
   }
 
   componentDidUpdate() {
+    this._deleteMarker();
     let {hotels} = this.props;
     let {coors} = this.props;
     city = coors;

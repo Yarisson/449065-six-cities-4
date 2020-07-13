@@ -13,6 +13,10 @@ const Offer = (props) => {
         onHover();
         handleSetActiveItem(coor);
       }}
+
+      onMouseLeave={() => {
+        handleSetActiveItem(null);
+      }}
       className="cities__place-card place-card">
       <div className="place-card__mark">
         <span>Premium</span>
