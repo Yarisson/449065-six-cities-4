@@ -13,8 +13,7 @@ const Offer = (props) => {
         handleSetActiveItem(coor);
       }}
 
-      onMouseLeave={(evt) => {
-        evt.preventDefault();
+      onMouseLeave={() => {
         handleSetActiveItem(null);
       }}
       className="cities__place-card place-card">

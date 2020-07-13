@@ -9,7 +9,7 @@ Enzyme.configure({
 
 it(`On offer hover and show info`, () => {
   const onHoverCard = jest.fn((evt) => evt.target.currentTarget);
-  const handleSetActiveItem = jest.fn((evt) => evt.target.currentTarget);
+  const handleSetActiveItem = jest.fn();
 
   const img = `img/room.jpg`;
   const price = `&euro;150`;
@@ -45,6 +45,4 @@ it(`On offer hover and show info`, () => {
   expect(onHoverCard.mock.calls[0][0]).toMatchObject(mockEvent);
 
   expect(handleSetActiveItem).toHaveBeenCalledTimes(1);
-  expect(handleSetActiveItem).toHaveReturnedWith(`Element`);
-  expect(handleSetActiveItem.mock.calls[0][0]).toMatchObject(mockEvent);
 });
