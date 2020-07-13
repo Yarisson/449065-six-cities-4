@@ -9,11 +9,12 @@ const Offer = (props) => {
     <article
       onMouseOver={(evt) => {
         evt.preventDefault();
-        onHover();
+        onHover(evt);
         handleSetActiveItem(coor);
       }}
 
-      onMouseLeave={() => {
+      onMouseLeave={(evt) => {
+        evt.preventDefault();
         handleSetActiveItem(null);
       }}
       className="cities__place-card place-card">

@@ -33,6 +33,7 @@ it(`On offer hover and show info`, () => {
 
   const header = offer.find(`.place-card__name a`);
   const mockEvent = {
+    preventDefault() {},
     target: {currentTarget: `Element`}
   };
 
