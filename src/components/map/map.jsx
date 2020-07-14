@@ -11,22 +11,20 @@ const icon = leaflet.icon({
   iconSize: [30, 30]
 });
 
+const iconActive = leaflet.icon({
+  iconUrl: `img/pin-active.svg`,
+  iconSize: [30, 30]
+});
+
 class Map extends React.PureComponent {
   constructor(props) {
     super(props);
     this.hotels = React.createRef();
     this.coors = React.createRef();
+    this.activeItem = React.createRef();
   }
 
   _initMap(point) {
-    // create map
-    // let {hotels} = this.props;
-    // let {coors} = this.props;
-    // city = coors;
-
-    // console.log(coors);
-    // console.log(city);
-
     const zoom = 12;
     this._map = leaflet.map(`map`, {
       center: point,
@@ -46,7 +44,21 @@ class Map extends React.PureComponent {
     .addTo(this._map);
 
     currentArray.forEach((item) => {
-      leaflet.marker(item.coor, {icon}).addTo(this._map);
+      if (this.props.activeItem === null) {
+        leaflet.marker(item.coor, {icon}).addTo(this._map);
+      } else {
+        if (item.coor === this.props.activeItem) {
+          leaflet.marker(item.coor, {iconActive}).addTo(this._map);
+        } else {
+          leaflet.marker(item.coor, {icon}).addTo(this._map);
+        }
+      }
+    });
+  }
+
+  _deleteMarker() {
+    this._map.eachLayer((layer) => {
+      layer.remove();
     });
   }
 
@@ -65,6 +77,7 @@ class Map extends React.PureComponent {
   }
 
   componentDidUpdate() {
+    this._deleteMarker();
     let {hotels} = this.props;
     let {coors} = this.props;
     city = coors;
@@ -82,7 +95,8 @@ class Map extends React.PureComponent {
 
 Map.propTypes = {
   hotels: propTypes.array.isRequired,
-  coors: propTypes.array.isRequired
+  coors: propTypes.array.isRequired,
+  activeItem: propTypes.array
 };
 
 export default Map;
