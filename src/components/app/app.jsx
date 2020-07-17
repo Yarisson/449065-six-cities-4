@@ -25,9 +25,9 @@ App.propTypes = {
   places: propTypes.number.isRequired,
   offers: propTypes.arrayOf(
       propTypes.shape({
-        preview_image: propTypes.string.isRequired,
+        image: propTypes.string.isRequired,
         price: propTypes.string.isRequired,
-        width: propTypes.string.isRequired,
+        rating: propTypes.string.isRequired,
         title: propTypes.string.isRequired,
         type: propTypes.string.isRequired,
         location: propTypes.array.isRequired,
@@ -51,13 +51,11 @@ const mapStateToProps = (state) => ({
   offers: getOffers(state)
 });
 
-console.log(state);
-
 const mapDispatchToProps = (dispatch) => ({
-  onLocationsItemClick(city) {
+  onLocationsItemClick(city, state) {
     dispatch(ActionCreator.toggleCity(city));
     dispatch(ActionCreator.toggleCoor(city));
-    dispatch(ActionCreator.getList(city));
+    dispatch(ActionCreator.getList(city, state));
   },
 });
 

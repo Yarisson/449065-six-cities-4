@@ -43,14 +43,14 @@ class Map extends React.PureComponent {
     .addTo(this._map);
 
     currentArray.forEach((item) => {
-      let offerCoors = [item.coor.latitude, item.coor.longitude];
+      let offerCoors = [item.location.latitude, item.location.longitude];
       if (this.props.activeItem === null) {
-        leaflet.marker(item.coor, {icon}).addTo(this._map);
+        leaflet.marker(offerCoors, {icon}).addTo(this._map);
       } else {
-        if (item.coor === this.props.activeItem) {
-          leaflet.marker(item.coor, {iconActive}).addTo(this._map);
+        if (item.location === this.props.activeItem) {
+          leaflet.marker(offerCoors, {iconActive}).addTo(this._map);
         } else {
-          leaflet.marker(item.coor, {icon}).addTo(this._map);
+          leaflet.marker(offerCoors, {icon}).addTo(this._map);
         }
       }
     });

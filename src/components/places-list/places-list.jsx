@@ -8,9 +8,9 @@ const PlacesList = (props) => {
 
   return (
     <div className="cities__places-list places__list tabs__content">
-      {hotels.map((hotel, index) =>
+      {hotels && hotels.map((hotel, index) =>
         <Offer key={index}
-          img={hotel.preview_img} price={hotel.price} title={hotel.title} type={hotel.type} width={hotel.rating} coor={hotel.location} onHover={onHover} handleSetActiveItem={handleSetActiveItem}
+          img={hotel.preview_image} price={hotel.price} title={hotel.title} type={hotel.type} rating={hotel.rating} coor={hotel.location} onHover={onHover} handleSetActiveItem={handleSetActiveItem}
         />
       )}
     </div>
@@ -22,7 +22,7 @@ PlacesList.propTypes = {
       propTypes.shape({
         img: propTypes.string.isRequired,
         price: propTypes.string.isRequired,
-        width: propTypes.string.isRequired,
+        rating: propTypes.string.isRequired,
         title: propTypes.string.isRequired,
         type: propTypes.string.isRequired
       })

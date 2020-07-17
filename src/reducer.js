@@ -1,6 +1,5 @@
 import {extend} from "./utils";
 
-// import offersAll from "./mocks/offers-all.js";
 import cityList from "./mocks/city-list.js";
 
 // const initialState = {
@@ -19,7 +18,6 @@ const initialState = {
   coors: [52.38, 4.9],
 };
 
-
 const getAuthorizationStatus = (state) => {
   return state.authorizationStatus;
 };
@@ -31,7 +29,6 @@ const getOffers = (state) => {
 const offersList = (state) => {
   return state.offers;
 };
-// const offersList = [];
 
 const ActionType = {
   LOAD_OFFERS: `LOAD_OFFERS`,
@@ -71,7 +68,7 @@ const ActionCreator = {
 
   getList: (city) => {
     let currentList = [];
-    for (let offer of offersList) {
+    for (let offer of state.offers) {
       if (offer.city.name === city) {
         currentList.push(offer);
       }

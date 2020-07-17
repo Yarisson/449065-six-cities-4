@@ -77,6 +77,7 @@ Offer.propTypes = {
   price: propTypes.string.isRequired,
   title: propTypes.string.isRequired,
   type: propTypes.string.isRequired,
+  rating: propTypes.string.isRequired,
   onHover: propTypes.func.isRequired,
   coor: propTypes.array,
   handleSetActiveItem: propTypes.func

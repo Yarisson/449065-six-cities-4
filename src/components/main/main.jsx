@@ -115,7 +115,7 @@ Main.propTypes = {
       propTypes.shape({
         img: propTypes.string.isRequired,
         price: propTypes.string.isRequired,
-        width: propTypes.string.isRequired,
+        rating: propTypes.string.isRequired,
         title: propTypes.string.isRequired,
         type: propTypes.string.isRequired,
         coor: propTypes.array.isRequired,

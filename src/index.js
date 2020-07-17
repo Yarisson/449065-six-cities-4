@@ -24,7 +24,7 @@ const init = () => {
   const onUnauthorized = () => {
     store.dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH));
   };
-  
+
   const api = createAPI(onUnauthorized);
 
   const store = createStore(
