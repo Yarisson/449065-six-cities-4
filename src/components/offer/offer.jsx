@@ -3,7 +3,9 @@ import React from "react";
 import propTypes from "prop-types";
 
 const Offer = (props) => {
-  const {img, price, title, type, coor, width, onHover, handleSetActiveItem} = props;
+  const {img, price, title, type, coor, rating, onHover, handleSetActiveItem} = props;
+
+  const offerRating = rating / 5 * 100;
 
   return (
     <article
@@ -55,7 +57,7 @@ const Offer = (props) => {
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{width}} ></span>
+            <span style={{width: `${offerRating}%`}} ></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
@@ -73,7 +75,6 @@ const Offer = (props) => {
 Offer.propTypes = {
   img: propTypes.string.isRequired,
   price: propTypes.string.isRequired,
-  width: propTypes.string.isRequired,
   title: propTypes.string.isRequired,
   type: propTypes.string.isRequired,
   onHover: propTypes.func.isRequired,

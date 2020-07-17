@@ -3,7 +3,6 @@ import React from "react";
 import propTypes from "prop-types";
 import leaflet from "leaflet";
 
-// let city = props.coors;
 let city;
 
 const icon = leaflet.icon({
@@ -44,6 +43,7 @@ class Map extends React.PureComponent {
     .addTo(this._map);
 
     currentArray.forEach((item) => {
+      let offerCoors = [item.coor.latitude, item.coor.longitude];
       if (this.props.activeItem === null) {
         leaflet.marker(item.coor, {icon}).addTo(this._map);
       } else {

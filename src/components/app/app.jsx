@@ -1,6 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
-import {ActionCreator} from "../../reducer.js";
+import {ActionCreator, getAuthorizationStatus, getOffers} from "../../reducer.js";
 import propTypes from "prop-types";
 import Main from '../main/main.jsx';
 
@@ -19,21 +19,18 @@ const App = (props) => {
     hotels={props.offers} places={places} city={props.city} coors={props.coors} cityList={cityList} onLocationsItemClick={onLocationsItemClick} onHover={onHover}
   />;
 
-  // <Main
-  //   hotels={props.offers} places={places} city={props.city} coors={props.coors} cityList={cityList} onLocationsItemClick={onLocationsItemClick} onHover={onHover}
-  // />;
 };
 
 App.propTypes = {
   places: propTypes.number.isRequired,
   offers: propTypes.arrayOf(
       propTypes.shape({
-        img: propTypes.string.isRequired,
+        preview_image: propTypes.string.isRequired,
         price: propTypes.string.isRequired,
         width: propTypes.string.isRequired,
         title: propTypes.string.isRequired,
         type: propTypes.string.isRequired,
-        coor: propTypes.array.isRequired,
+        location: propTypes.array.isRequired,
       })
   ).isRequired,
   city: propTypes.string,
@@ -48,10 +45,13 @@ App.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
+  authorizationStatus: getAuthorizationStatus(state),
   city: state.city,
   coors: state.coors,
-  offers: state.offers
+  offers: getOffers(state)
 });
+
+console.log(state);
 
 const mapDispatchToProps = (dispatch) => ({
   onLocationsItemClick(city) {

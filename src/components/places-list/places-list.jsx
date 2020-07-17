@@ -10,7 +10,7 @@ const PlacesList = (props) => {
     <div className="cities__places-list places__list tabs__content">
       {hotels.map((hotel, index) =>
         <Offer key={index}
-          img={hotel.img} price={hotel.price} title={hotel.title} type={hotel.type} width={hotel.width} coor={hotel.coor} onHover={onHover} handleSetActiveItem={handleSetActiveItem}
+          img={hotel.preview_img} price={hotel.price} title={hotel.title} type={hotel.type} width={hotel.rating} coor={hotel.location} onHover={onHover} handleSetActiveItem={handleSetActiveItem}
         />
       )}
     </div>
