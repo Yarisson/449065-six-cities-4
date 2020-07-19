@@ -1,6 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
-import {ActionCreator, getAuthorizationStatus, getOffers} from "../../reducer.js";
+import {ActionCreator, getAuthorizationStatus, getOffers, getCurrentOffers, getCurrentCity, getCurrentCoor, getCityList} from "../../reducer.js";
 import propTypes from "prop-types";
 import Main from '../main/main.jsx';
 
@@ -16,7 +16,7 @@ const App = (props) => {
   };
 
   return <MainWrapped
-    hotels={props.offers} places={places} city={props.city} coors={props.coors} cityList={cityList} onLocationsItemClick={onLocationsItemClick} onHover={onHover}
+    hotels={props.currentOffers} places={places} city={props.city} coors={props.coors} cityList={props.cityList} onLocationsItemClick={onLocationsItemClick} onHover={onHover}
   />;
 
 };
@@ -24,6 +24,16 @@ const App = (props) => {
 App.propTypes = {
   places: propTypes.number.isRequired,
   offers: propTypes.arrayOf(
+      propTypes.shape({
+        image: propTypes.string.isRequired,
+        price: propTypes.string.isRequired,
+        rating: propTypes.string.isRequired,
+        title: propTypes.string.isRequired,
+        type: propTypes.string.isRequired,
+        location: propTypes.array.isRequired,
+      })
+  ).isRequired,
+  currentOffers: propTypes.arrayOf(
       propTypes.shape({
         image: propTypes.string.isRequired,
         price: propTypes.string.isRequired,
@@ -46,16 +56,19 @@ App.propTypes = {
 
 const mapStateToProps = (state) => ({
   authorizationStatus: getAuthorizationStatus(state),
-  city: state.city,
-  coors: state.coors,
-  offers: getOffers(state)
+  city: getCurrentCity(state),
+  coors: getCurrentCoor(state),
+  offers: getOffers(state),
+  cityList: getCityList(state),
+  currentOffers: getCurrentOffers(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onLocationsItemClick(city, state) {
+  onLocationsItemClick(city) {
     dispatch(ActionCreator.toggleCity(city));
     dispatch(ActionCreator.toggleCoor(city));
-    dispatch(ActionCreator.getList(city, state));
+    dispatch(ActionCreator.clearOffers());
+    dispatch(ActionCreator.getList(city));
   },
 });
 

@@ -4,7 +4,6 @@ import propTypes from "prop-types";
 
 const CityList = (props) => {
   const {cityList, activeItem, handleSetActiveItem, onLocationsItemClick} = props;
-  console.log(activeItem);
   return (
     <ul className="locations__list tabs__list">
 
