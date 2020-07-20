@@ -9,7 +9,7 @@ import withActiveItem from "../../hocs/with-active-item.js";
 const MainWrapped = withActiveItem(Main);
 
 const App = (props) => {
-  const {places, cityList, onLocationsItemClick} = props;
+  const {places, onLocationsItemClick} = props;
 
   const onHover = function () {
 
@@ -23,16 +23,16 @@ const App = (props) => {
 
 App.propTypes = {
   places: propTypes.number.isRequired,
-  offers: propTypes.arrayOf(
-      propTypes.shape({
-        image: propTypes.string.isRequired,
-        price: propTypes.string.isRequired,
-        rating: propTypes.string.isRequired,
-        title: propTypes.string.isRequired,
-        type: propTypes.string.isRequired,
-        location: propTypes.array.isRequired,
-      })
-  ).isRequired,
+  // offers: propTypes.arrayOf(
+  //     propTypes.shape({
+  //       image: propTypes.string.isRequired,
+  //       price: propTypes.string.isRequired,
+  //       rating: propTypes.string.isRequired,
+  //       title: propTypes.string.isRequired,
+  //       type: propTypes.string.isRequired,
+  //       location: propTypes.array.isRequired,
+  //     })
+  // ).isRequired,
   currentOffers: propTypes.arrayOf(
       propTypes.shape({
         image: propTypes.string.isRequired,
@@ -43,14 +43,14 @@ App.propTypes = {
         location: propTypes.array.isRequired,
       })
   ).isRequired,
-  city: propTypes.string,
-  cityList: propTypes.arrayOf(
-      propTypes.shape({
-        name: propTypes.string.isRequired,
-        coor: propTypes.array.isRequired
-      })
-  ).isRequired,
-  coors: propTypes.array.isRequired,
+  // city: propTypes.string,
+  // cityList: propTypes.arrayOf(
+  //     propTypes.shape({
+  //       name: propTypes.string.isRequired,
+  //       coor: propTypes.array.isRequired
+  //     })
+  // ).isRequired,
+  // coors: propTypes.array.isRequired,
   onLocationsItemClick: propTypes.func.isRequired
 };
 

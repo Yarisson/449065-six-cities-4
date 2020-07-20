@@ -1,21 +1,6 @@
 import {extend} from "./utils";
 
-import cityList from "./mocks/city-list.js";
-
-// const initialState = {
-//   city: `Amsterdam`,
-//   coors: [52.38, 4.9],
-//   offers: [
-//     {city: `Amsterdam`, img: `img/apartment-01.jpg`, price: `&euro;120`, width: `80%`, title: `Beautiful &amp; luxurious apartment at great location`, type: `Apartment`, coor: [52.3909553943508, 4.85309666406198]},
-//     {city: `Amsterdam`, img: `img/room.jpg`, price: `&euro;80`, width: `80%`, title: `Wood and stone place`, type: `Private room`, coor: [52.369553943508, 4.85309666406198]},
-//     {city: `Amsterdam`, img: `img/apartment-02.jpg`, price: `&euro;132`, width: `80%`, title: `Canal View Prinsengracht`, type: `Apartment`, coor: [52.3909553943508, 4.929309666406198]},
-//     {city: `Amsterdam`, img: `img/apartment-03.jpg`, price: `&euro;180`, width: `100%`, title: `Nice, cozy, warm big bed apartment`, type: `Apartment`, coor: [52.3809553943508, 4.939309666406198]},
-//   ],
-// };
-
 const initialState = {
-  // city: `Amsterdam`,
-  // coors: [52.38, 4.9],
   currentOffers: [],
   cityList: [],
 };
@@ -42,7 +27,7 @@ const getCurrentOffers = (state) => {
 };
 
 const getCurrentCity = (state) => {
-  if (state.offers) {
+  if (state.offers && state.offers.length > 0) {
     state.city = state.offers[0].city.name;
     return state.city;
   }
@@ -50,28 +35,23 @@ const getCurrentCity = (state) => {
 
 const getCurrentCoor = (state) => {
   if (state.offers) {
-    state.coors = [state.offers[0].city.latitude, state.offers[0].city.longitude];
+    state.coors = [state.offers[0].city.location.latitude, state.offers[0].city.location.longitude];
     return state.coors;
   }
 };
 
-
 const getCityList = (state) => {
   if (state.offers) {
-    let offers = state.offers;
-    let cityLength;
-    offers.forEach((offer) => {
-      state.cityList.name.push(offer.city.name);
-      state.cityList.coors.push(offer.city.location);
-    });
-    for (let q = 1, i = 1; q < state.cityList.length; ++q) {
-      if (state.cityList[q] !== state.cityList[q - 1]) {
-        state.cityList[i++] = state.cityList[q];
-        cityLength = i;
+    let cityNames = [];
+
+    for (let offer of state.offers) {
+      if (!cityNames.includes(offer.city.name)) {
+        cityNames.push(offer.city.name);
+        state.cityList.push(offer.city);
+        console.log(state.cityList);
       }
     }
 
-    state.cityList.length = cityLength;
     return state.cityList;
   }
 };
@@ -112,9 +92,9 @@ const ActionCreator = {
 
   toggleCoor: (city) => {
     let coordinates;
-    for (let item of cityList) {
+    for (let item of state.cityList) {
       if (item.name === city) {
-        coordinates = item.coor;
+        coordinates = [item.location.latitude, item.location.longitude];
       }
     }
 

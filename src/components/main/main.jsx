@@ -121,14 +121,14 @@ Main.propTypes = {
         coor: propTypes.array.isRequired,
       })
   ).isRequired,
-  cityList: propTypes.arrayOf(
-      propTypes.shape({
-        name: propTypes.string.isRequired,
-        coor: propTypes.array.isRequired
-      })
-  ).isRequired,
+  // cityList: propTypes.arrayOf(
+  //     propTypes.shape({
+  //       name: propTypes.string.isRequired,
+  //       coor: propTypes.array.isRequired
+  //     })
+  // ).isRequired,
   city: propTypes.string,
-  coors: propTypes.array.isRequired,
+  // coors: propTypes.array.isRequired,
   onLocationsItemClick: propTypes.func.isRequired,
   onHover: propTypes.func.isRequired,
   activeItem: propTypes.array,

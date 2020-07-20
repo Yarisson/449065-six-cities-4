@@ -95,7 +95,7 @@ class Map extends React.PureComponent {
 
 Map.propTypes = {
   hotels: propTypes.array.isRequired,
-  coors: propTypes.array.isRequired,
+  // coors: propTypes.array.isRequired,
   activeItem: propTypes.array
 };
 

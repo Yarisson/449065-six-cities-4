@@ -7,7 +7,7 @@ const CityList = (props) => {
   return (
     <ul className="locations__list tabs__list">
 
-      {cityList.map((item, index) =>
+      {cityList && cityList.map((item, index) =>
         <li key={index}
 
           onClick={(evt) => {

@@ -9,7 +9,7 @@ import App from "./components/app/app.jsx";
 import {reducer} from "./reducer.js";
 import {Operation as OffersOperation, ActionCreator} from "./reducer.js";
 import {createAPI, AuthorizationStatus} from "./api";
-import cityList from "./mocks/city-list.js";
+// import cityList from "./mocks/city-list.js";
 
 // const api = createAPI(() => {
 //   store.dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH));
@@ -44,7 +44,7 @@ const init = () => {
   ReactDOM.render(
       <Provider store={store}>
         <App
-          places={settings.places} cityList={cityList}
+          places={settings.places}
         />
       </Provider>,
       document.querySelector(`#root`)
