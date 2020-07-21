@@ -16,23 +16,23 @@ const App = (props) => {
   };
 
   return <MainWrapped
-    hotels={props.currentOffers} places={places} city={props.city} coors={props.coors} cityList={props.cityList} onLocationsItemClick={onLocationsItemClick} onHover={onHover}
+    offers={props.offers} hotels={props.currentOffers} places={places} city={props.city} coors={props.coors} cityList={props.cityList} onLocationsItemClick={onLocationsItemClick} onHover={onHover}
   />;
 
 };
 
 App.propTypes = {
   places: propTypes.number.isRequired,
-  // offers: propTypes.arrayOf(
-  //     propTypes.shape({
-  //       image: propTypes.string.isRequired,
-  //       price: propTypes.string.isRequired,
-  //       rating: propTypes.string.isRequired,
-  //       title: propTypes.string.isRequired,
-  //       type: propTypes.string.isRequired,
-  //       location: propTypes.array.isRequired,
-  //     })
-  // ).isRequired,
+  offers: propTypes.arrayOf(
+      propTypes.shape({
+        image: propTypes.string.isRequired,
+        price: propTypes.string.isRequired,
+        rating: propTypes.string.isRequired,
+        title: propTypes.string.isRequired,
+        type: propTypes.string.isRequired,
+        location: propTypes.array.isRequired,
+      })
+  ).isRequired,
   currentOffers: propTypes.arrayOf(
       propTypes.shape({
         image: propTypes.string.isRequired,
@@ -43,14 +43,14 @@ App.propTypes = {
         location: propTypes.array.isRequired,
       })
   ).isRequired,
-  // city: propTypes.string,
-  // cityList: propTypes.arrayOf(
-  //     propTypes.shape({
-  //       name: propTypes.string.isRequired,
-  //       coor: propTypes.array.isRequired
-  //     })
-  // ).isRequired,
-  // coors: propTypes.array.isRequired,
+  city: propTypes.string,
+  cityList: propTypes.arrayOf(
+      propTypes.shape({
+        name: propTypes.string.isRequired,
+        location: propTypes.array.isRequired
+      })
+  ).isRequired,
+  coors: propTypes.array.isRequired,
   onLocationsItemClick: propTypes.func.isRequired
 };
 
@@ -64,11 +64,11 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onLocationsItemClick(city) {
+  onLocationsItemClick(city, offers) {
     dispatch(ActionCreator.toggleCity(city));
-    dispatch(ActionCreator.toggleCoor(city));
+    dispatch(ActionCreator.toggleCoor(city, offers));
     dispatch(ActionCreator.clearOffers());
-    dispatch(ActionCreator.getList(city));
+    dispatch(ActionCreator.getList(city, offers));
   },
 });
 

@@ -10,7 +10,7 @@ import withActiveItem from "../../hocs/with-active-item.js";
 const CityListWrapped = withActiveItem(CityList);
 
 const Main = (props) => {
-  const {places, hotels, coors, city, cityList, onLocationsItemClick, onHover, activeItem, handleSetActiveItem} = props;
+  const {offers, places, hotels, coors, city, cityList, onLocationsItemClick, onHover, activeItem, handleSetActiveItem} = props;
 
   return (
     <div className="page page--gray page--main">
@@ -51,7 +51,7 @@ const Main = (props) => {
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
           <section className="locations container">
-            <CityListWrapped cityList={cityList} onLocationsItemClick={onLocationsItemClick}/>
+            <CityListWrapped offers={offers} cityList={cityList} onLocationsItemClick={onLocationsItemClick}/>
           </section>
         </div>
         <div className="cities">
@@ -110,6 +110,16 @@ const Main = (props) => {
 };
 
 Main.propTypes = {
+  offers: propTypes.arrayOf(
+      propTypes.shape({
+        image: propTypes.string.isRequired,
+        price: propTypes.string.isRequired,
+        rating: propTypes.string.isRequired,
+        title: propTypes.string.isRequired,
+        type: propTypes.string.isRequired,
+        location: propTypes.array.isRequired,
+      })
+  ).isRequired,
   places: propTypes.number.isRequired,
   hotels: propTypes.arrayOf(
       propTypes.shape({

@@ -16,11 +16,15 @@ const getOffers = (state) => {
 const getCurrentOffers = (state) => {
   if (state.offers) {
     let offers = state.offers;
-    offers.forEach((offer) => {
-      if (offer.city.name === state.city) {
-        state.currentOffers.push(offer);
-      }
+    state.currentOffers = offers.filter(function (e) {
+      return e.city.name === state.city;
     });
+    // (offer.city.name === state.city);
+    // offers.forEach((offer) => {
+    //   if (offer.city.name === state.city) {
+    //     state.currentOffers.push(offer);
+    //   }
+    // });
   }
 
   return state.currentOffers;
@@ -42,22 +46,18 @@ const getCurrentCoor = (state) => {
 
 const getCityList = (state) => {
   if (state.offers) {
+
     let cityNames = [];
 
     for (let offer of state.offers) {
       if (!cityNames.includes(offer.city.name)) {
         cityNames.push(offer.city.name);
         state.cityList.push(offer.city);
-        console.log(state.cityList);
       }
     }
 
     return state.cityList;
   }
-};
-
-const offersList = (state) => {
-  return state.offers;
 };
 
 const ActionType = {
@@ -90,32 +90,36 @@ const ActionCreator = {
     };
   },
 
-  toggleCoor: (city) => {
-    let coordinates;
-    for (let item of state.cityList) {
-      if (item.name === city) {
-        coordinates = [item.location.latitude, item.location.longitude];
-      }
-    }
+  toggleCoor: (city, array) => {
+    let element;
+    element = array.find(function (e) {
+      return e.city.name === city;
+    });
 
     return {
       type: ActionType.TOGGLE_COOR,
-      payload: coordinates,
+      payload: [element.city.location.latitude, element.city.location.longitude],
     };
   },
 
-  getList: (city) => {
-    for (let offer of state.offers) {
-      if (offer.city.name === city) {
-        state.currentOffers.push(offer);
-      }
-    }
+  //
+  getList: (city, array) => {
+    let currentList = [];
+    // for (let offer of state.offers) {
+    //   if (offer.city.name === city) {
+    //     state.currentOffers.push(offer);
+    //   }
+    // }
+    currentList = array.filter(function (e) {
+      return e.city.name === city;
+    });
 
     return {
       type: ActionType.GET_LIST,
-      payload: state.currentOffers,
+      payload: currentList,
     };
   },
+  //
 };
 
 const Operation = {

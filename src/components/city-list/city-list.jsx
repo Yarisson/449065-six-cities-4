@@ -3,7 +3,7 @@ import propTypes from "prop-types";
 // import ReactDOM from "react-dom";
 
 const CityList = (props) => {
-  const {cityList, activeItem, handleSetActiveItem, onLocationsItemClick} = props;
+  const {offers, cityList, activeItem, handleSetActiveItem, onLocationsItemClick} = props;
   return (
     <ul className="locations__list tabs__list">
 
@@ -12,7 +12,7 @@ const CityList = (props) => {
 
           onClick={(evt) => {
             evt.preventDefault();
-            onLocationsItemClick(item.name);
+            onLocationsItemClick(item.name, offers);
             handleSetActiveItem(item.name);
           }}
           className="locations__item"
@@ -27,6 +27,16 @@ const CityList = (props) => {
 };
 
 CityList.propTypes = {
+  offers: propTypes.arrayOf(
+      propTypes.shape({
+        img: propTypes.string.isRequired,
+        price: propTypes.string.isRequired,
+        rating: propTypes.string.isRequired,
+        title: propTypes.string.isRequired,
+        type: propTypes.string.isRequired,
+        coor: propTypes.array.isRequired,
+      })
+  ).isRequired,
   cityList: propTypes.arrayOf(
       propTypes.shape({
         name: propTypes.string.isRequired,

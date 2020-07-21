@@ -9,7 +9,6 @@ import App from "./components/app/app.jsx";
 import {reducer} from "./reducer.js";
 import {Operation as OffersOperation, ActionCreator} from "./reducer.js";
 import {createAPI, AuthorizationStatus} from "./api";
-// import cityList from "./mocks/city-list.js";
 
 // const api = createAPI(() => {
 //   store.dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH));
@@ -35,11 +34,6 @@ const init = () => {
   );
 
   store.dispatch(OffersOperation.loadOffers());
-
-  // const store = createStore(
-  //     reducer,
-  //     window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : (f) => f
-  // );
 
   ReactDOM.render(
       <Provider store={store}>
