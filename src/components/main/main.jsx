@@ -10,7 +10,7 @@ import withActiveItem from "../../hocs/with-active-item.js";
 const CityListWrapped = withActiveItem(CityList);
 
 const Main = (props) => {
-  const {offers, places, hotels, coors, city, cityList, onLocationsItemClick, onHover, activeItem, handleSetActiveItem} = props;
+  const {offers, places, hotels, city, cityList, onLocationsItemClick, onHover, activeItem, handleSetActiveItem} = props;
 
   return (
     <div className="page page--gray page--main">
@@ -98,7 +98,7 @@ const Main = (props) => {
             <div className="cities__right-section">
 
               <section className="map">
-                <Map hotels={hotels} coors={coors} cityList={cityList} activeItem={activeItem}/>
+                <Map hotels={hotels} activeItem={activeItem}/>
               </section>
 
             </div>
@@ -112,36 +112,53 @@ const Main = (props) => {
 Main.propTypes = {
   offers: propTypes.arrayOf(
       propTypes.shape({
-        image: propTypes.string.isRequired,
-        price: propTypes.string.isRequired,
-        rating: propTypes.string.isRequired,
-        title: propTypes.string.isRequired,
-        type: propTypes.string.isRequired,
-        location: propTypes.array.isRequired,
+        city: propTypes.objectOf(
+            propTypes.shape({
+              name: propTypes.object,
+              location: propTypes.objectOf(
+                  propTypes.shape({
+                    latitude: propTypes.number,
+                    longitude: propTypes.number,
+                  })
+              ),
+            })
+        ),
+        image: propTypes.string,
+        price: propTypes.number,
+        rating: propTypes.string,
+        title: propTypes.string,
+        type: propTypes.string,
+        location: propTypes.array,
       })
-  ).isRequired,
-  places: propTypes.number.isRequired,
+  ),
+  places: propTypes.number,
   hotels: propTypes.arrayOf(
       propTypes.shape({
-        img: propTypes.string.isRequired,
-        price: propTypes.string.isRequired,
-        rating: propTypes.string.isRequired,
-        title: propTypes.string.isRequired,
-        type: propTypes.string.isRequired,
-        coor: propTypes.array.isRequired,
+        city: propTypes.objectOf(
+            propTypes.shape({
+              name: propTypes.object,
+              location: propTypes.objectOf(
+                  propTypes.shape({
+                    latitude: propTypes.number,
+                    longitude: propTypes.number,
+                  })
+              ),
+            })
+        ),
+        img: propTypes.string,
+        price: propTypes.number,
+        rating: propTypes.string,
+        title: propTypes.string,
+        type: propTypes.string,
+        location: propTypes.array,
+        // coor: propTypes.arrayOf(propTypes.number),
       })
-  ).isRequired,
-  cityList: propTypes.arrayOf(
-      propTypes.shape({
-        name: propTypes.string.isRequired,
-        location: propTypes.array.isRequired
-      })
-  ).isRequired,
+  ),
+  cityList: propTypes.array,
   city: propTypes.string,
-  coors: propTypes.array.isRequired,
-  onLocationsItemClick: propTypes.func.isRequired,
-  onHover: propTypes.func.isRequired,
-  activeItem: propTypes.array,
+  onLocationsItemClick: propTypes.func,
+  onHover: propTypes.func,
+  activeItem: propTypes.object,
   handleSetActiveItem: propTypes.func
 };
 

@@ -1,6 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
-import {ActionCreator, getAuthorizationStatus, getOffers, getCurrentOffers, getCurrentCity, getCurrentCoor} from "../../reducer.js";
+import {ActionCreator, getAuthorizationStatus, getOffers, getCurrentOffers, getStateCityList, getCurrentCity} from "../../reducer.js";
 import propTypes from "prop-types";
 import Main from '../main/main.jsx';
 
@@ -18,10 +18,8 @@ class App extends React.PureComponent {
     this.places = React.createRef();
   }
 
-  componentDidMount() {
-    // const { getListOfCity, offers, } = this.props;
-    if (this.props.offers) {
-      console.log(this.props.offers);
+  componentDidUpdate(prevProps) {
+    if (this.props.offers !== prevProps.offers) {
       this.props.getListOfCity(this.props.offers);
     }
   }
@@ -29,71 +27,73 @@ class App extends React.PureComponent {
   render() {
     return (
       <MainWrapped
-        offers={this.props.offers} hotels={this.props.currentOffers} places={this.props.places} city={this.props.city} coors={this.props.coors} cityList={this.props.cityList} onLocationsItemClick={this.props.onLocationsItemClick} onHover={onHover}
+        offers={this.props.offers} hotels={this.props.currentOffers} places={this.props.places} city={this.props.city} cityList={this.props.cityList} onLocationsItemClick={this.props.onLocationsItemClick} onHover={onHover}
       />
     );
   }
 }
-// const App = (props) => {
-//   const {places, onLocationsItemClick} = props;
-
-//   const onHover = function () {
-
-//   };
-
-//   return <MainWrapped
-//     offers={props.offers} hotels={props.currentOffers} places={places} city={props.city} coors={props.coors} cityList={props.cityList} onLocationsItemClick={onLocationsItemClick} onHover={onHover}
-//   />;
-
-// };
 
 App.propTypes = {
-  places: propTypes.number.isRequired,
+  places: propTypes.number,
   offers: propTypes.arrayOf(
       propTypes.shape({
-        image: propTypes.string.isRequired,
-        price: propTypes.string.isRequired,
-        rating: propTypes.string.isRequired,
-        title: propTypes.string.isRequired,
-        type: propTypes.string.isRequired,
-        location: propTypes.array.isRequired,
+        city: propTypes.objectOf(
+            propTypes.shape({
+              name: propTypes.object,
+              location: propTypes.objectOf(
+                  propTypes.shape({
+                    latitude: propTypes.number,
+                    longitude: propTypes.number,
+                  })
+              ),
+            })
+        ),
+        image: propTypes.string,
+        price: propTypes.number,
+        rating: propTypes.string,
+        title: propTypes.string,
+        type: propTypes.string,
+        location: propTypes.array,
       })
-  ).isRequired,
+  ),
   currentOffers: propTypes.arrayOf(
       propTypes.shape({
-        image: propTypes.string.isRequired,
-        price: propTypes.string.isRequired,
-        rating: propTypes.string.isRequired,
-        title: propTypes.string.isRequired,
-        type: propTypes.string.isRequired,
-        location: propTypes.array.isRequired,
+        city: propTypes.objectOf(
+            propTypes.shape({
+              name: propTypes.object,
+              location: propTypes.objectOf(
+                  propTypes.shape({
+                    latitude: propTypes.number,
+                    longitude: propTypes.number,
+                  })
+              ),
+            })
+        ),
+        image: propTypes.string,
+        price: propTypes.number,
+        rating: propTypes.number,
+        title: propTypes.string,
+        type: propTypes.string,
+        location: propTypes.array,
       })
-  ).isRequired,
+  ),
   city: propTypes.string,
-  cityList: propTypes.arrayOf(
-      propTypes.shape({
-        name: propTypes.string.isRequired,
-        location: propTypes.array.isRequired
-      })
-  ).isRequired,
-  coors: propTypes.array.isRequired,
-  onLocationsItemClick: propTypes.func.isRequired
+  cityList: propTypes.array,
+  onLocationsItemClick: propTypes.func,
+  getListOfCity: propTypes.func
 };
 
 const mapStateToProps = (state) => ({
   authorizationStatus: getAuthorizationStatus(state),
   city: getCurrentCity(state),
-  coors: getCurrentCoor(state),
   offers: getOffers(state),
-  cityList: [],
-  // cityList: getCityList(state),
-  currentOffers: getCurrentOffers(state)
+  currentOffers: getCurrentOffers(state),
+  cityList: getStateCityList(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onLocationsItemClick(city, offers) {
     dispatch(ActionCreator.toggleCity(city));
-    dispatch(ActionCreator.toggleCoor(city, offers));
     dispatch(ActionCreator.clearOffers());
     dispatch(ActionCreator.getList(city, offers));
   },

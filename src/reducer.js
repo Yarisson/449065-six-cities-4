@@ -1,8 +1,7 @@
 import {extend} from "./utils";
 
 const initialState = {
-  currentOffers: [],
-  cityList: [],
+
 };
 
 const getAuthorizationStatus = (state) => {
@@ -19,12 +18,6 @@ const getCurrentOffers = (state) => {
     state.currentOffers = offers.filter(function (e) {
       return e.city.name === state.city;
     });
-    // (offer.city.name === state.city);
-    // offers.forEach((offer) => {
-    //   if (offer.city.name === state.city) {
-    //     state.currentOffers.push(offer);
-    //   }
-    // });
   }
 
   return state.currentOffers;
@@ -37,28 +30,9 @@ const getCurrentCity = (state) => {
   }
 };
 
-const getCurrentCoor = (state) => {
-  if (state.offers) {
-    state.coors = [state.offers[0].city.location.latitude, state.offers[0].city.location.longitude];
-    return state.coors;
-  }
+const getStateCityList = (state) => {
+  return state.cityList;
 };
-
-// const getCityList = (state) => {
-//   if (state.offers) {
-
-//     let cityNames = [];
-
-//     for (let offer of state.offers) {
-//       if (!cityNames.includes(offer.city.name)) {
-//         cityNames.push(offer.city.name);
-//         state.cityList.push(offer.city);
-//       }
-//     }
-
-//     return state.cityList;
-//   }
-// };
 
 const ActionType = {
   LOAD_OFFERS: `LOAD_OFFERS`,
@@ -91,28 +65,11 @@ const ActionCreator = {
     };
   },
 
-  toggleCoor: (currentCity, array) => {
-    let element;
-    element = array.find(function (city) {
-      return city.name === currentCity;
-    });
-
-    return {
-      type: ActionType.TOGGLE_COOR,
-      payload: [element.city.location.latitude, element.city.location.longitude],
-    };
-  },
-
   //
   getList: (currentCity, array) => {
     let currentList = [];
-    // for (let offer of state.offers) {
-    //   if (offer.city.name === city) {
-    //     state.currentOffers.push(offer);
-    //   }
-    // }
-    currentList = array.filter(function (city) {
-      return city.name === currentCity;
+    currentList = array.filter(function (e) {
+      return e.city.name === currentCity;
     });
 
     return {
@@ -125,7 +82,7 @@ const ActionCreator = {
     let cityList = [];
     for (let offer of array) {
       if (!cityList.includes(offer.city.name)) {
-        cityList.push(offer.city);
+        cityList.push(offer.city.name);
       }
     }
 
@@ -134,7 +91,6 @@ const ActionCreator = {
       payload: cityList,
     };
   }
-  //
 };
 
 const Operation = {
@@ -163,11 +119,6 @@ const reducer = (state = initialState, action) => {
         currentOffers: action.payload,
       });
 
-    case ActionType.TOGGLE_COOR:
-      return extend(state, {
-        coors: action.payload,
-      });
-
     case ActionType.GET_LIST:
       return extend(state, {
         currentOffers: action.payload,
@@ -182,4 +133,4 @@ const reducer = (state = initialState, action) => {
   return state;
 };
 
-export {reducer, ActionCreator, ActionType, Operation, getAuthorizationStatus, getOffers, getCurrentOffers, getCurrentCity, getCurrentCoor};
+export {reducer, ActionCreator, ActionType, Operation, getAuthorizationStatus, getOffers, getCurrentOffers, getStateCityList, getCurrentCity};

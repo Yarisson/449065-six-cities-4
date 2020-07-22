@@ -74,12 +74,12 @@ const Offer = (props) => {
 
 Offer.propTypes = {
   img: propTypes.string.isRequired,
-  price: propTypes.string.isRequired,
+  price: propTypes.number.isRequired,
   title: propTypes.string.isRequired,
   type: propTypes.string.isRequired,
-  rating: propTypes.string.isRequired,
+  rating: propTypes.number.isRequired,
   onHover: propTypes.func.isRequired,
-  coor: propTypes.array,
+  coor: propTypes.object,
   handleSetActiveItem: propTypes.func
 };
 

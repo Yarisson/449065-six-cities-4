@@ -12,13 +12,13 @@ const CityList = (props) => {
 
           onClick={(evt) => {
             evt.preventDefault();
-            onLocationsItemClick(item.name, offers);
-            handleSetActiveItem(item.name);
+            onLocationsItemClick(item, offers);
+            handleSetActiveItem(item);
           }}
           className="locations__item"
         >
-          <a className={`locations__item-link tabs__item tabs__item--${item.name === activeItem ? `active` : ``}`} href="#">
-            <span>{item.name}</span>
+          <a className={`locations__item-link tabs__item tabs__item--${item === activeItem ? `active` : ``}`} href="#">
+            <span>{item}</span>
           </a>
         </li>
       )}
@@ -29,21 +29,27 @@ const CityList = (props) => {
 CityList.propTypes = {
   offers: propTypes.arrayOf(
       propTypes.shape({
-        img: propTypes.string.isRequired,
-        price: propTypes.string.isRequired,
-        rating: propTypes.string.isRequired,
-        title: propTypes.string.isRequired,
-        type: propTypes.string.isRequired,
-        coor: propTypes.array.isRequired,
+        city: propTypes.objectOf(
+            propTypes.shape({
+              name: propTypes.object,
+              location: propTypes.objectOf(
+                  propTypes.shape({
+                    latitude: propTypes.number,
+                    longitude: propTypes.number,
+                  })
+              ),
+            })
+        ),
+        img: propTypes.string,
+        price: propTypes.number,
+        rating: propTypes.number,
+        title: propTypes.string,
+        type: propTypes.string,
+        coor: propTypes.arrayOf(propTypes.number),
       })
-  ).isRequired,
-  cityList: propTypes.arrayOf(
-      propTypes.shape({
-        name: propTypes.string.isRequired,
-        coor: propTypes.array.isRequired
-      })
-  ).isRequired,
-  onLocationsItemClick: propTypes.func.isRequired,
+  ),
+  cityList: propTypes.array,
+  onLocationsItemClick: propTypes.func,
   handleSetActiveItem: propTypes.func,
   activeItem: propTypes.string
 };

@@ -20,14 +20,26 @@ const PlacesList = (props) => {
 PlacesList.propTypes = {
   hotels: propTypes.arrayOf(
       propTypes.shape({
-        img: propTypes.string.isRequired,
-        price: propTypes.string.isRequired,
-        rating: propTypes.string.isRequired,
-        title: propTypes.string.isRequired,
-        type: propTypes.string.isRequired
+        city: propTypes.objectOf(
+            propTypes.shape({
+              name: propTypes.object,
+              location: propTypes.objectOf(
+                  propTypes.shape({
+                    latitude: propTypes.number,
+                    longitude: propTypes.number,
+                  })
+              ),
+            })
+        ),
+        img: propTypes.string,
+        price: propTypes.number,
+        rating: propTypes.number,
+        title: propTypes.string,
+        type: propTypes.string,
+        location: propTypes.array,
       })
-  ).isRequired,
-  onHover: propTypes.func.isRequired,
+  ),
+  onHover: propTypes.func,
   handleSetActiveItem: propTypes.func
 };
 

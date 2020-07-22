@@ -3,7 +3,7 @@ import React from "react";
 import propTypes from "prop-types";
 import leaflet from "leaflet";
 
-let city;
+let city = [];
 
 const icon = leaflet.icon({
   iconUrl: `img/pin.svg`,
@@ -19,7 +19,6 @@ class Map extends React.PureComponent {
   constructor(props) {
     super(props);
     this.hotels = React.createRef();
-    this.coors = React.createRef();
     this.activeItem = React.createRef();
   }
 
@@ -62,26 +61,31 @@ class Map extends React.PureComponent {
     });
   }
 
-  componentDidMount() {
-    let {hotels} = this.props;
-    let {coors} = this.props;
-    city = coors;
+  // componentDidMount() {
+    // let {hotels} = this.props;
+    // console.log(hotels);
+    // let {coors} = this.props.coors;
+    // if (hotels) {
+    //   city = [hotels[0].city.location.latitude, hotels[0].city.location.longitude];
+    // }
+    // city = [48.85, 2.34];
 
-    try {
-      this._initMap(city);
-      this._drawMap(hotels, this.zoom);
-      return null;
-    } catch (error) {
-      return null;
-    }
-  }
+    // try {
+    //   this._initMap(city);
+    //   this._drawMap(hotels, this.zoom);
+    //   return null;
+    // } catch (error) {
+    //   return null;
+    // }
+  // }
 
   componentDidUpdate() {
-    this._deleteMarker();
+    // this._deleteMarker();
     let {hotels} = this.props;
-    let {coors} = this.props;
-    city = coors;
+    // city = coors;
+    city = [hotels[0].city.location.latitude, hotels[0].city.location.longitude];
     try {
+      this._initMap(city);
       return this._drawMap(hotels, this.zoom);
     } catch (error) {
       return null;
@@ -94,9 +98,8 @@ class Map extends React.PureComponent {
 }
 
 Map.propTypes = {
-  hotels: propTypes.array.isRequired,
-  coors: propTypes.array.isRequired,
-  activeItem: propTypes.array
+  hotels: propTypes.array,
+  activeItem: propTypes.object
 };
 
 export default Map;
