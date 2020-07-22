@@ -16,12 +16,13 @@ class App extends React.PureComponent {
   constructor(props) {
     super(props);
     this.places = React.createRef();
-    // this.onLocationsItemClick;
   }
 
   componentDidMount() {
+    // const { getListOfCity, offers, } = this.props;
     if (this.props.offers) {
-      this.getListOfCity(this.props.offers);
+      console.log(this.props.offers);
+      this.props.getListOfCity(this.props.offers);
     }
   }
 
