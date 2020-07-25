@@ -10,7 +10,7 @@ import withActiveItem from "../../hocs/with-active-item.js";
 const CityListWrapped = withActiveItem(CityList);
 
 const Main = (props) => {
-  const {offers, places, hotels, city, cityList, onLocationsItemClick, onHover, activeItem, handleSetActiveItem} = props;
+  const {offers, places, hotels, city, cityList, onLocationsItemClick, onHover, activeItem, handleSetActiveItem, onCurrentCityListClearClick, onCurrentCityListUpdateClick} = props;
 
   return (
     <div className="page page--gray page--main">
@@ -51,7 +51,7 @@ const Main = (props) => {
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
           <section className="locations container">
-            <CityListWrapped offers={offers} cityList={cityList} onLocationsItemClick={onLocationsItemClick}/>
+            <CityListWrapped offers={offers} cityList={cityList} onLocationsItemClick={onLocationsItemClick} onCurrentCityListClearClick={onCurrentCityListClearClick} onCurrentCityListUpdateClick={onCurrentCityListUpdateClick}/>
           </section>
         </div>
         <div className="cities">
@@ -151,12 +151,13 @@ Main.propTypes = {
         title: propTypes.string,
         type: propTypes.string,
         location: propTypes.array,
-        // coor: propTypes.arrayOf(propTypes.number),
       })
   ),
   cityList: propTypes.array,
   city: propTypes.string,
   onLocationsItemClick: propTypes.func,
+  onCurrentCityListClearClick: propTypes.func,
+  onCurrentCityListUpdateClick: propTypes.func,
   onHover: propTypes.func,
   activeItem: propTypes.object,
   handleSetActiveItem: propTypes.func

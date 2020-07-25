@@ -27,7 +27,7 @@ class App extends React.PureComponent {
   render() {
     return (
       <MainWrapped
-        offers={this.props.offers} hotels={this.props.currentOffers} places={this.props.places} city={this.props.city} cityList={this.props.cityList} onLocationsItemClick={this.props.onLocationsItemClick} onHover={onHover}
+        offers={this.props.offers} hotels={this.props.currentOffers} places={this.props.places} city={this.props.city} cityList={this.props.cityList} onLocationsItemClick={this.props.onLocationsItemClick} onCurrentCityListClearClick={this.props.onCurrentCityListClearClick} onCurrentCityListUpdateClick={this.props.onCurrentCityListUpdateClick} onHover={onHover}
       />
     );
   }
@@ -39,7 +39,7 @@ App.propTypes = {
       propTypes.shape({
         city: propTypes.objectOf(
             propTypes.shape({
-              name: propTypes.object,
+              name: propTypes.string,
               location: propTypes.objectOf(
                   propTypes.shape({
                     latitude: propTypes.number,
@@ -60,7 +60,7 @@ App.propTypes = {
       propTypes.shape({
         city: propTypes.objectOf(
             propTypes.shape({
-              name: propTypes.object,
+              name: propTypes.sting,
               location: propTypes.objectOf(
                   propTypes.shape({
                     latitude: propTypes.number,
@@ -80,6 +80,8 @@ App.propTypes = {
   city: propTypes.string,
   cityList: propTypes.array,
   onLocationsItemClick: propTypes.func,
+  onCurrentCityListClearClick: propTypes.func,
+  onCurrentCityListUpdateClick: propTypes.func,
   getListOfCity: propTypes.func
 };
 
@@ -92,9 +94,13 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onLocationsItemClick(city, offers) {
+  onLocationsItemClick(city) {
     dispatch(ActionCreator.toggleCity(city));
+  },
+  onCurrentCityListClearClick() {
     dispatch(ActionCreator.clearOffers());
+  },
+  onCurrentCityListUpdateClick(city, offers) {
     dispatch(ActionCreator.getList(city, offers));
   },
   getListOfCity(offers) {

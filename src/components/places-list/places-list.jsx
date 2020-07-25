@@ -36,7 +36,7 @@ PlacesList.propTypes = {
         rating: propTypes.number,
         title: propTypes.string,
         type: propTypes.string,
-        location: propTypes.array,
+        coor: propTypes.array,
       })
   ),
   onHover: propTypes.func,
