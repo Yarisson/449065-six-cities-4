@@ -13,6 +13,7 @@ const withActiveItem = (Component) => {
     }
 
     handleSetActiveItem(item) {
+      console.log(item);
       this.setState(() => ({
         activeItem: item,
       }));
