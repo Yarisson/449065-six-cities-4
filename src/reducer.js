@@ -13,7 +13,7 @@ const getOffers = (state) => {
 };
 
 const getCurrentOffers = (state) => {
-  if (state.offers) {
+  if (state.offers && !state.currentOffers) {
     return state.offers.filter((e) => e.city.name === state.city);
   }
 

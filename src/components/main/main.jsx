@@ -98,7 +98,7 @@ const Main = (props) => {
             <div className="cities__right-section">
 
               <section className="map">
-                <Map hotels={hotels} activeItem={activeItem}/>
+                {hotels && <Map hotels={hotels} city={city} activeItem={activeItem}/>}
               </section>
 
             </div>

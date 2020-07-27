@@ -1,9 +1,6 @@
 import React from "react";
-// import ReactDOM from "react-dom";
 import propTypes from "prop-types";
 import leaflet from "leaflet";
-
-let city = [];
 
 const icon = leaflet.icon({
   iconUrl: `img/pin.svg`,
@@ -32,8 +29,8 @@ class Map extends React.PureComponent {
     });
   }
 
-  _drawMap(currentArray, currentZoom) {
-    this._map.setView(city, currentZoom);
+  _drawMap(currentCity, currentArray, currentZoom) {
+    this._map.setView(currentCity, currentZoom);
 
     leaflet
     .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
@@ -61,35 +58,21 @@ class Map extends React.PureComponent {
     });
   }
 
-  // componentDidMount() {
-    // let {hotels} = this.props;
-    // console.log(hotels);
-    // let {coors} = this.props.coors;
-    // if (hotels) {
-    //   city = [hotels[0].city.location.latitude, hotels[0].city.location.longitude];
-    // }
-    // city = [48.85, 2.34];
-
-    // try {
-    //   this._initMap(city);
-    //   this._drawMap(hotels, this.zoom);
-    //   return null;
-    // } catch (error) {
-    //   return null;
-    // }
-  // }
-
-  componentDidUpdate() {
-    // this._deleteMarker();
+  componentDidMount() {
     let {hotels} = this.props;
-    // city = coors;
-    city = [hotels[0].city.location.latitude, hotels[0].city.location.longitude];
+    const city = [hotels[0].city.location.latitude, hotels[0].city.location.longitude];
     try {
       this._initMap(city);
-      return this._drawMap(hotels, this.zoom);
+      return this._drawMap(city, hotels, this.zoom);
     } catch (error) {
       return null;
     }
+  }
+
+  componentDidUpdate() {
+    let {hotels} = this.props;
+    const city = [hotels[0].city.location.latitude, hotels[0].city.location.longitude];
+    this._drawMap(city, hotels, this.zoom);
   }
 
   render() {
@@ -99,7 +82,7 @@ class Map extends React.PureComponent {
 
 Map.propTypes = {
   hotels: propTypes.array,
-  activeItem: propTypes.object
+  activeItem: propTypes.object,
 };
 
 export default Map;
