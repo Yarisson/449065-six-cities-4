@@ -14,14 +14,19 @@ const getOffers = (state) => {
 
 const getCurrentOffers = (state) => {
   if (state.offers) {
-    let offers = state.offers;
-    state.currentOffers = offers.filter(function (e) {
-      return e.city.name === state.city;
-    });
+    return state.offers.filter((e) => e.city.name === state.city);
   }
 
   return state.currentOffers;
 };
+
+// const getCurrentOffers = (state) => {
+//   if (state.offers) {
+//     return state.offers.filter((e) => e.city.name === state.city);
+//   }
+
+//   return state.currentOffers;
+// };
 
 const getCurrentCity = (state) => {
   if (state.offers && state.offers.length > 0) {
