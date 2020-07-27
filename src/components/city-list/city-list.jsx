@@ -3,7 +3,7 @@ import propTypes from "prop-types";
 // import ReactDOM from "react-dom";
 
 const CityList = (props) => {
-  const {offers, cityList, activeItem, handleSetActiveItem, onLocationsItemClick, onCurrentCityListClearClick, onCurrentCityListUpdateClick} = props;
+  const {offers, cityList, activeItem, handleSetActiveItem, onLocationsItemClick} = props;
   return (
     <ul className="locations__list tabs__list">
 
@@ -12,9 +12,7 @@ const CityList = (props) => {
 
           onClick={(evt) => {
             evt.preventDefault();
-            onLocationsItemClick(item);
-            onCurrentCityListClearClick();
-            onCurrentCityListUpdateClick(item, offers);
+            onLocationsItemClick(item, offers);
             handleSetActiveItem(item);
           }}
           className="locations__item"
@@ -52,8 +50,6 @@ CityList.propTypes = {
   ),
   cityList: propTypes.array,
   onLocationsItemClick: propTypes.func,
-  onCurrentCityListClearClick: propTypes.func,
-  onCurrentCityListUpdateClick: propTypes.func,
   handleSetActiveItem: propTypes.func,
   activeItem: propTypes.string
 };

@@ -94,14 +94,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onLocationsItemClick(city) {
-    dispatch(ActionCreator.toggleCity(city));
-  },
-  onCurrentCityListClearClick() {
-    dispatch(ActionCreator.clearOffers());
-  },
-  onCurrentCityListUpdateClick(city, offers) {
-    dispatch(ActionCreator.getList(city, offers));
+  onLocationsItemClick(city, offers) {
+    dispatch(ActionCreator.toggleCity(city, offers));
   },
   getListOfCity(offers) {
     dispatch(ActionCreator.getCityList(offers));

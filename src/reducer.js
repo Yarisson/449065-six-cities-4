@@ -51,12 +51,24 @@ const ActionCreator = {
     };
   },
 
-  toggleCity: (city) => {
+  toggleCity: (city, array) => {
+    let currentList = [];
+    currentList = array.filter(function (e) {
+      return e.city.name === city;
+    });
+
     return {
       type: ActionType.TOGGLE_CITY,
-      payload: city,
+      payload: {city, currentList},
     };
   },
+
+  // toggleCity: (city) => {
+  //   return {
+  //     type: ActionType.TOGGLE_CITY,
+  //     payload: city,
+  //   };
+  // },
 
   clearOffers: () => {
     return {
@@ -111,7 +123,8 @@ const reducer = (state = initialState, action) => {
 
     case ActionType.TOGGLE_CITY:
       return extend(state, {
-        city: action.payload,
+        city: action.payload.city,
+        currentOffers: action.payload.currentList,
       });
 
     case ActionType.CLEAR_OFFERS:
