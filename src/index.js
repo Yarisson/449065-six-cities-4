@@ -6,13 +6,10 @@ import thunk from "redux-thunk";
 import {composeWithDevTools} from "redux-devtools-extension";
 // import {createStore} from "redux";
 import App from "./components/app/app.jsx";
-import {reducer} from "./reducer.js";
-import {Operation as OffersOperation, ActionCreator} from "./reducer.js";
+import {reducer} from "./reducer/reducer.js";
+import {Operation as DataOperation, ActionCreator} from "./reducer/data/data";
+// import {Operation as OffersOperation, ActionCreator} from "./reducer.js";
 import {createAPI, AuthorizationStatus} from "./api";
-
-// const api = createAPI(() => {
-//   store.dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH));
-// });
 
 const init = () => {
 
@@ -33,7 +30,7 @@ const init = () => {
       )
   );
 
-  store.dispatch(OffersOperation.loadOffers());
+  store.dispatch(DataOperation.loadOffers());
 
   ReactDOM.render(
       <Provider store={store}>

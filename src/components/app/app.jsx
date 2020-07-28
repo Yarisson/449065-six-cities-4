@@ -1,6 +1,8 @@
 import React from "react";
 import {connect} from "react-redux";
-import {ActionCreator, getAuthorizationStatus, getOffers, getCurrentOffers, getStateCityList, getCurrentCity} from "../../reducer.js";
+import {ActionCreator} from "../../reducer/data/data.js";
+import {getAuthorizationStatus} from "../../reducer/user/selectors";
+import {getOffers, getCurrentOffers, getStateCityList, getCurrentCity} from "../../reducer/data/selectors";
 import propTypes from "prop-types";
 import Main from '../main/main.jsx';
 

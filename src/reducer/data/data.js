@@ -1,34 +1,8 @@
-import {extend} from "./utils";
+import {extend} from "../../utils";
+
 
 const initialState = {
 
-};
-
-const getAuthorizationStatus = (state) => {
-  return state.authorizationStatus;
-};
-
-const getOffers = (state) => {
-  return state.offers;
-};
-
-const getCurrentOffers = (state) => {
-  if (state.offers && !state.currentOffers) {
-    return state.offers.filter((e) => e.city.name === state.city);
-  }
-
-  return state.currentOffers;
-};
-
-const getCurrentCity = (state) => {
-  if (state.offers && state.offers.length > 0) {
-    state.city = state.offers[0].city.name;
-    return state.city;
-  }
-};
-
-const getStateCityList = (state) => {
-  return state.cityList;
 };
 
 const ActionType = {
@@ -135,4 +109,5 @@ const reducer = (state = initialState, action) => {
   return state;
 };
 
-export {reducer, ActionCreator, ActionType, Operation, getAuthorizationStatus, getOffers, getCurrentOffers, getStateCityList, getCurrentCity};
+
+export {reducer, Operation, ActionType, ActionCreator};

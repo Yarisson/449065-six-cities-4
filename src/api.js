@@ -39,4 +39,4 @@ const createAPI = (onUnauthorized) => {
   return api;
 };
 
-export {createAPI, AuthorizationStatus}
+export {createAPI, AuthorizationStatus};
