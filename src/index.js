@@ -6,7 +6,7 @@ import thunk from "redux-thunk";
 import {composeWithDevTools} from "redux-devtools-extension";
 // import {createStore} from "redux";
 import App from "./components/app/app.jsx";
-import {reducer} from "./reducer/reducer.js";
+import reducer from "./reducer/reducer";
 import {Operation as DataOperation, ActionCreator} from "./reducer/data/data";
 // import {Operation as OffersOperation, ActionCreator} from "./reducer.js";
 import {createAPI, AuthorizationStatus} from "./api";
